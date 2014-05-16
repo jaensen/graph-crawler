@@ -1,0 +1,774 @@
+{
+	"nodes" : [
+		{
+			"data" :
+			{
+				"name" : "Antoine Aubinais",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 3
+		},
+		{
+			"data" :
+			{
+				"name" : "Julien Beller",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 4
+		},
+		{
+			"data" :
+			{
+				"name" : "Julien Bayou",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 5
+		},
+		{
+			"data" :
+			{
+				"name" : "Daya Bakker",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 6
+		},
+		{
+			"data" :
+			{
+				"name" : "Joachim Bola\u00f1os",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 7
+		},
+		{
+			"data" :
+			{
+				"name" : "Nicolas Bonnenfant",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 8
+		},
+		{
+			"data" :
+			{
+				"name" : "Florian Bosc Malavergne",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 9
+		},
+		{
+			"data" :
+			{
+				"name" : "Julien Choppin",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 10
+		},
+		{
+			"data" :
+			{
+				"name" : "Julien Courtial",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 11
+		},
+		{
+			"data" :
+			{
+				"name" : "Nicolas Delon",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 12
+		},
+		{
+			"data" :
+			{
+				"name" : "Etienne Delprat",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 13
+		},
+		{
+			"data" :
+			{
+				"name" : "Antoine Demarest",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 14
+		},
+		{
+			"data" :
+			{
+				"name" : "Christophe Driesbach",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 15
+		},
+		{
+			"data" :
+			{
+				"name" : "Dagmar Dudinsky",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 16
+		},
+		{
+			"data" :
+			{
+				"name" : "Yassine Elkherfi",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 17
+		},
+		{
+			"data" :
+			{
+				"name" : "Sebastien Eymard",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 18
+		},
+		{
+			"data" :
+			{
+				"name" : "Baptiste Furic",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 19
+		},
+		{
+			"data" :
+			{
+				"name" : "Sylvain Gaufillier",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 20
+		},
+		{
+			"data" :
+			{
+				"name" : "Pablo Georgieff",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 21
+		},
+		{
+			"data" :
+			{
+				"name" : "Nicolas Henninger",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 22
+		},
+		{
+			"data" :
+			{
+				"name" : "Claudia Hernandez Nass",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 23
+		},
+		{
+			"data" :
+			{
+				"name" : "Simon Jacquemin",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 24
+		},
+		{
+			"data" :
+			{
+				"name" : "Fred Kief",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 25
+		},
+		{
+			"data" :
+			{
+				"name" : "Gonzague Lacombe",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 26
+		},
+		{
+			"data" :
+			{
+				"name" : "Alice Leborgne",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 27
+		},
+		{
+			"data" :
+			{
+				"name" : "Vincent Lorin",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 28
+		},
+		{
+			"data" :
+			{
+				"name" : "Fiona Meadows",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 29
+		},
+		{
+			"data" :
+			{
+				"name" : "Dimitri Messu",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 30
+		},
+		{
+			"data" :
+			{
+				"name" : "Gilles Montmory",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 31
+		},
+		{
+			"data" :
+			{
+				"name" : "Laurent Petit",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 32
+		},
+		{
+			"data" :
+			{
+				"name" : "Veronique Petteeuw",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 33
+		},
+		{
+			"data" :
+			{
+				"name" : "Philippe Rizzotti",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 34
+		},
+		{
+			"data" :
+			{
+				"name" : "Alexandre R\u00f6mer",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 35
+		},
+		{
+			"data" :
+			{
+				"name" : "Nancy Roquet",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 36
+		},
+		{
+			"data" :
+			{
+				"name" : "Silvana Segapeli",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 37
+		},
+		{
+			"data" :
+			{
+				"name" : "Stefan Shankland",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 38
+		},
+		{
+			"data" :
+			{
+				"name" : "Merril Sineus",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 39
+		},
+		{
+			"data" :
+			{
+				"name" : "S\u00e9bastien Thi\u00e9ry",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 40
+		},
+		{
+			"data" :
+			{
+				"name" : "Juliette Six",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 41
+		},
+		{
+			"data" :
+			{
+				"name" : "Marion Valentine",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 42
+		},
+		{
+			"data" :
+			{
+				"name" : "Damien Beslot",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 43
+		},
+		{
+			"data" :
+			{
+				"name" : "ROMAIN MINOD",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 44
+		},
+		{
+			"data" :
+			{
+				"name" : "Manu Macaigne",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 45
+		},
+		{
+			"data" :
+			{
+				"name" : "FAR",
+				"desc" : ""
+			},
+			"type" : "Project",
+			"id" : 46
+		},
+		{
+			"data" :
+			{
+				"name" : "Speranza!",
+				"desc" : ""
+			},
+			"type" : "Project",
+			"id" : 47
+		},
+		{
+			"data" :
+			{
+				"name" : "Trans305",
+				"desc" : ""
+			},
+			"type" : "Project",
+			"id" : 48
+		},
+		{
+			"data" :
+			{
+				"name" : "Bellastock 2011",
+				"desc" : ""
+			},
+			"type" : "Project",
+			"id" : 49
+		},
+		{
+			"data" :
+			{
+				"name" : "Point d'eau",
+				"desc" : ""
+			},
+			"type" : "Project",
+			"id" : 50
+		},
+		{
+			"data" :
+			{
+				"name" : "Le grand Cergy",
+				"desc" : ""
+			},
+			"type" : "Project",
+			"id" : 51
+		},
+		{
+			"data" :
+			{
+				"name" : "ANPU",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 52
+		},
+		{
+			"data" :
+			{
+				"name" : "AoA",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 53
+		},
+		{
+			"data" :
+			{
+				"name" : "Atelier Immediat",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 54
+		},
+		{
+			"data" :
+			{
+				"name" : "Bellastock",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 55
+		},
+		{
+			"data" :
+			{
+				"name" : "Cochenko",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 56
+		},
+		{
+			"data" :
+			{
+				"name" : "Coloco",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 57
+		},
+		{
+			"data" :
+			{
+				"name" : "Directeur G\u00e9n\u00e9ral",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 58
+		},
+		{
+			"data" :
+			{
+				"name" : "Encore Heureux",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 59
+		},
+		{
+			"data" :
+			{
+				"name" : "Exyzt",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 60
+		},
+		{
+			"data" :
+			{
+				"name" : "La villa mais d'ici",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 61
+		},
+		{
+			"data" :
+			{
+				"name" : "Quatorze",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 62
+		},
+		{
+			"data" :
+			{
+				"name" : "Ya+k",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 63
+		},
+		{
+			"data" :
+			{
+				"name" : "Hobo",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 64
+		},
+		{
+			"data" :
+			{
+				"name" : "Le 6b",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 65
+		},
+		{
+			"data" :
+			{
+				"name" : "Constructlab",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 66
+		},
+		{
+			"data" :
+			{
+				"name" : "Raum",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 67
+		},
+		{
+			"data" :
+			{
+				"name" : "Gabriel Batistella",
+				"desc" : ""
+			},
+			"type" : "Person",
+			"id" : 68
+		},
+		{
+			"data" :
+			{
+				"name" : "Naturalo",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 69
+		},
+		{
+			"data" :
+			{
+				"name" : "No mad's land",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 70
+		},
+		{
+			"data" :
+			{
+				"name" : "Jeudi Noir",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 71
+		},
+		{
+			"data" :
+			{
+				"name" : "Construire",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 72
+		},
+		{
+			"data" :
+			{
+				"name" : "Hobo",
+				"desc" : ""
+			},
+			"type" : "Collective",
+			"id" : 73
+		} 
+	],
+	"edges" :
+	[
+		[ 46, 60 ],
+		[ 46, 61 ],
+		[ 46, 65 ],
+		[ 46, 58 ],
+		[ 46, 4 ],
+		[ 46, 6 ],
+		[ 46, 14 ],
+		[ 46, 16 ],
+		[ 46, 22 ],
+		[ 46, 26 ],
+		[ 46, 42 ],
+		[ 46, 45 ],
+		[ 46, 11 ],
+		[ 47, 56 ],
+		[ 47, 57 ],
+		[ 47, 58 ],
+		[ 47, 60 ],
+		[ 47, 62 ],
+		[ 47, 64 ],
+		[ 47, 54 ],
+		[ 47, 7 ],
+		[ 47, 8 ],
+		[ 47, 10 ],
+		[ 47, 12 ],
+		[ 47, 14 ],
+		[ 47, 18 ],
+		[ 47, 20 ],
+		[ 47, 21 ],
+		[ 47, 24 ],
+		[ 47, 26 ],
+		[ 47, 27 ],
+		[ 47, 34 ],
+		[ 47, 39 ],
+		[ 47, 40 ],
+		[ 47, 41 ],
+		[ 47, 43 ],
+		[ 47, 44 ],
+		[ 47, 5 ],
+		[ 48, 9 ],
+		[ 48, 13 ],
+		[ 48, 17 ],
+		[ 48, 23 ],
+		[ 48, 24 ],
+		[ 48, 25 ],
+		[ 48, 30 ],
+		[ 48, 31 ],
+		[ 48, 33 ],
+		[ 48, 35 ],
+		[ 48, 36 ],
+		[ 48, 37 ],
+		[ 48, 38 ],
+		[ 48, 63 ],
+		[ 48, 66 ],
+		[ 48, 67 ],
+		[ 49, 3 ],
+		[ 49, 7 ],
+		[ 49, 14 ],
+		[ 49, 13 ],
+		[ 49, 17 ],
+		[ 49, 19 ],
+		[ 49, 24 ],
+		[ 49, 44 ],
+		[ 50, 4 ],
+		[ 50, 29 ],
+		[ 50, 46 ],
+		[ 50, 53 ],
+		[ 50, 69 ],
+		[ 50, 70 ],
+		[ 51, 28 ],
+		[ 51, 32 ],
+		[ 51, 16 ],
+		[ 51, 52 ],
+		[ 51, 60 ],
+		[ 51, 58 ],
+		[ 3, 55 ],
+		[ 3, 63 ],
+		[ 4, 70 ],
+		[ 4, 65 ],
+		[ 4, 60 ],
+		[ 5, 71 ],
+		[ 6, 60 ],
+		[ 7, 62 ],
+		[ 8, 57 ],
+		[ 10, 59 ],
+		[ 11, 61 ],
+		[ 12, 59 ],
+		[ 13, 55 ],
+		[ 13, 63 ],
+		[ 14, 62 ],
+		[ 3, 56 ],
+		[ 15, 71 ],
+		[ 16, 60 ],
+		[ 16, 58 ],
+		[ 17, 55 ],
+		[ 17, 63 ],
+		[ 18, 72 ],
+		[ 19, 55 ],
+		[ 19, 63 ],
+		[ 20, 71 ],
+		[ 20, 62 ],
+		[ 21, 57 ],
+		[ 22, 60 ],
+		[ 24, 62 ],
+		[ 24, 55 ],
+		[ 25, 60 ],
+		[ 25, 48 ],
+		[ 26, 60 ],
+		[ 26, 58 ],
+		[ 27, 56 ],
+		[ 28, 52 ],
+		[ 28, 56 ],
+		[ 29, 53 ],
+		[ 30, 60 ],
+		[ 22, 52 ],
+		[ 33, 60 ],
+		[ 34, 60 ],
+		[ 35, 60 ],
+		[ 35, 66 ],
+		[ 39, 47 ],
+		[ 39, 73 ],
+		[ 40, 54 ],
+		[ 41, 56 ],
+		[ 42, 65 ],
+		[ 42, 56 ],
+		[ 43, 56 ],
+		[ 43, 62 ],
+		[ 44, 62 ],
+		[ 44, 56 ] 
+	]
+}
