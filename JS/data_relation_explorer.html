@@ -1,0 +1,285 @@
+<html>
+	<head>
+		<title>Data relation explorer</title>
+		<script type="text/javascript" src="mustache.js"></script>
+		<script type="text/javascript" src="jQuery.js"></script>
+		<script type="text/javascript" src="Class.js"></script>
+		<script type="text/javascript" src="GraphDbApi.js"></script>
+		<script type="text/javascript" src="data_relation_explorer.js"></script>
+		<script type="text/javascript" src="Widget.js"></script>
+		<script type="text/javascript" src="List.js"></script>
+		<script type="text/javascript">
+			jQuery(function() {
+				var api = new GraphDbApi("http://localhost:1212/ctrlService/");
+				
+				var q_nodeLabel = jQuery("#q_nodeLabel");
+				var q_resetNodeLabel = jQuery("#q_resetNodeLabel");
+				
+				var nodesTable = jQuery(jQuery("#nodes table").first());
+				var nodesTBody = jQuery("tbody", nodesTable);
+				
+
+				var q_edgeLabel = jQuery("#q_edgeLabel");
+				var q_resetEdgeLabel = jQuery("#q_resetEdgeLabel");
+				
+				var edgesTable = jQuery(jQuery("#edges table").first());
+				var edgesTBody = jQuery("tbody", edgesTable);
+
+				var q_queryClass = jQuery("#q_queryClass");
+				var q_queryEdgeTypes = jQuery("#q_queryEdgeTypes");
+				
+
+				var a_load = jQuery("#a_load");
+				
+				a_load.click(function() {
+					api.load();
+					
+					return false;
+				});
+				
+				var a_save = jQuery("#a_save");
+				
+				a_save.click(function() {
+					api.save();
+					
+					return false;
+				});
+				
+				q_resetNodeLabel.click(function() {
+					q_nodeLabel.val("");
+					nodesTBody.html("");
+					
+					return false;
+				});
+
+				q_nodeLabel.keyup(function() {
+
+					if (q_nodeLabel.val().length < 2)
+						return;
+					
+					api.findNodes(q_nodeLabel.val(), function(data) {
+						if (typeof data == "undefined")
+							return;
+												
+						nodesTBody.html("");
+						
+						for (var i = 0; i < data.length; i++) {
+							nodesTBody.append(jQuery(
+							"<tr>" +
+								"<td>" + data[i].Id + "</td>" +
+								"<td>" + data[i].Label + "</td>" +
+								"<td>" + data[i].Type + "</td>" +
+							"</tr>"));
+						}
+					});
+				});
+
+				q_resetEdgeLabel.click(function() {
+					q_edgeLabel.val("");
+					edgesTBody.html("");
+					
+					return false;
+				});
+								
+				q_edgeLabel.keyup(function() {
+
+					if (q_edgeLabel.val().length < 2)
+						return;
+					
+					api.findEdges(q_edgeLabel.val(), function(data) {
+						if (typeof data == "undefined")
+							return;
+												
+						edgesTBody.html("");
+						
+						for (var i = 0; i < data.length; i++) {
+							edgesTBody.append(jQuery(
+							"<tr>" +
+								"<td><a class='navigateToNodeLink' href='#'>" + data[i].Source + "</a></td>" +
+								"<td><a class='navigateToNodeLink' href='#'>" + data[i].Target + "</a></td>" +
+								"<td>" + data[i].Id + "</td>" +
+								"<td>" + data[i].Label + "</td>" +
+								"<td>" + data[i].Weight + "</td>" +
+							"</tr>"));
+						}
+					});
+				});
+				
+				q_queryClass.click(function() {
+					
+					api.loadClassNodes(function(data) {
+						if (typeof data == "undefined")
+							return;
+												
+						nodesTBody.html("");
+						
+						for (var i = 0; i < data.length; i++) {
+							nodesTBody.append(jQuery(
+							"<tr>" +
+								"<td>" + data[i].Id + "</td>" +
+								"<td>" + data[i].Label + "</td>" +
+								"<td>" + data[i].Type + "</td>" +
+							"</tr>"));
+						}
+					});
+					return false;
+				});
+				
+				q_queryEdgeTypes.click(function() {
+					
+					api.loadEdgeTypes(function(data) {
+						if (typeof data == "undefined")
+							return;
+						
+						edgesTBody.html("");
+						
+						for (var i = 0; i < data.length; i++) {
+							edgesTBody.append(jQuery(
+							"<tr>" +
+								"<td></td>" +
+								"<td></td>" +
+								"<td></td>" +
+								"<td>" + data[i] + "</td>" +
+								"<td></td>" +
+							"</tr>"));
+						}
+					});
+					return false;
+				});
+				
+				
+				/*
+				 * New node
+				 */
+
+				var nn_Label = jQuery("#nn_Label");
+				var nn_Type = jQuery("#nn_Type");
+				var nn_NewType = jQuery("#nn_NewType");
+				var nn_Create = jQuery("#nn_Create");
+				
+				nn_Create.click(function() {
+					
+					
+					return false;
+				});
+				
+				
+				/*
+				 * New edge
+				 */
+
+				var ne_From = jQuery("#ne_From");
+				var ne_To = jQuery("#ne_To");
+				var ne_Label = jQuery("#ne_Label");
+				var ne_Create = jQuery("#ne_Create");
+				
+				ne_Create.click(function() {
+					
+					
+					return false;
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<fieldset>
+			<legend>Query</legend>
+			<div>
+				<form>
+					<fieldset>
+						<legend>Node label</legend>
+						<input type="text" id="q_nodeLabel" />
+						<input type="submit" id="q_resetNodeLabel" value="Reset" />
+					</fieldset>
+					<fieldset>
+						<legend>Edge label</legend>
+						<input type="text" id="q_edgeLabel" />
+						<input type="submit" id="q_resetEdgeLabel" value="Reset" />
+					</fieldset>
+					<fieldset>
+						<legend>Classes</legend>
+						<input type="submit" id="q_queryClass" value="Query" />
+					</fieldset>
+					<fieldset>
+						<legend>Edge Types</legend>
+						<input type="submit" id="q_queryEdgeTypes" value="Query" />
+					</fieldset>
+					<fieldset>
+						<legend>Load data</legend>
+						<input type="submit" id="a_load" value="Load data" />
+					</fieldset>
+					<fieldset>
+						<legend>Save data</legend>
+						<input type="submit" id="a_save" value="Save data" />
+					</fieldset>
+				</form>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>New node</legend>
+			<div>
+				<label for="nn_Label">Label:</label>
+				<input type="text" id="nn_Label" /><br/>
+				<label for="nn_Label">Type:</label>
+				<select id="nn_Type">
+					<option>Instance</option>
+					<option>Class</option>
+					<option>Place</option>
+					<option>Dimension (Date)</option>
+					<option>Dimension (Year)</option>
+					<option>Dimension (Decade)</option>
+				</select>
+				<br/>
+				<label for="nn_NewType">New Type:</label>
+				<input type="text" id="nn_NewType" /><br/>
+				<input type="submit" id="nn_Create" value="Create"/>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>New edge</legend>
+			<div>
+				<label for="ne_From">From:</label>
+				<input type="text" id="ne_From" /><br/>
+				<label for="ne_To">To:</label>
+				<input type="text" id="ne_To" /><br/>
+				<label for="ne_Label">Label:</label>
+				<input type="text" id="ne_Label" /><br/>
+				<label for="ne_NewLabel">New Label:</label>
+				<input type="text" id="ne_NewLabel" /><br/>
+				<input type="submit" id="ne_Create" value="Create"/>
+			</div>
+		</fieldset>
+		<h1>Results</h1>
+		<div id="main">
+			<div id="nodes" style="float:left">
+				<table>
+					<thead>
+						<tr>
+							<td>Id</td>
+							<td>Label</td>
+							<td>Type</td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<div id="edges" style="float:right">
+				<table>
+					<thead>
+						<tr>
+							<td>Source</td>
+							<td>Target</td>
+							<td>Id</td>
+							<td>Label</td>
+							<td>Weight</td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,296 @@
+<html>
+<head>
+<title>Data relation explorer</title>
+<script type="text/javascript" src="mustache.js"></script>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript" src="Class.js"></script>
+<script type="text/javascript" src="GraphDbApi.js"></script>
+<script type="text/javascript" src="data_relation_explorer.js"></script>
+<script type="text/javascript" src="Widget.js"></script>
+<script type="text/javascript" src="List.js"></script>
+<script type="text/javascript" src="findInDomWords.js"></script>
+<script type="text/javascript">
+	jQuery(function()
+	{
+		var api = new GraphDbApi("http://localhost:1212/ctrlService/");
+
+		var r_uri = jQuery("#r_uri");
+		var r_load = jQuery("#r_load");
+
+
+		var classes = [];
+		api.loadClassNodes(function(data)
+		{
+			classes = data;
+		});
+		
+		var instances = [];
+		api.loadInstanceNodes(function(data)
+		{
+			instances = data;
+		});
+		
+		var iframe = jQuery("<iframe id='loadedPage'></iframe>");
+		iframe.attr("frameborder", "0");
+		
+
+		iframe.load(function()
+		{
+			jQuery('#foundHyperLinks ul li').each(function(){
+				this.remove();
+			});
+			
+			var x = document.getElementById("loadedPage");
+			var y = (x.contentWindow || x.contentDocument);
+			if (y.document)
+				y = y.document;
+			
+			y.designMode = "On"
+			
+
+			/**
+			 *   Bind the click event for all iframe content and extract the selected text on every click.
+			 *   This can then be edited and added to the graph.
+			 */
+			jQuery('body', y).click(function() {
+			    var text = "";
+			    if (y.getSelection) {
+			        text = y.getSelection().toString();
+			    }
+			    if (y.selection) {
+			        text = y.selection.createRange().text;
+			    }
+			    
+			    if (text != "") {
+			    	jQuery("#selectedText").val(text);
+			    }
+			});
+			
+			var baseUrlA = jQuery("#baseUriA").get(0);
+			console.log("Initial base uri: " + baseUrlA.href);
+			
+			var windowLocationA = jQuery("<a href='" + window.location + "'></a>").get(0);
+			
+			/*
+			 * Snippet to search the dom for a text occurence. searchs for every word.
+			 *
+			var word = "foo",
+		    queue = [y.body],
+		    curr
+			;
+			while (curr = queue.pop()) {
+			    if (!curr.textContent.match(word)) continue;
+			    for (var i = 0; i < curr.childNodes.length; ++i) {
+			        switch (curr.childNodes[i].nodeType) {
+			            case Node.TEXT_NODE : // 3
+			                if (curr.childNodes[i].textContent.match(word)) {
+			                    console.log("Found!");
+			                    console.log(curr);
+			                    // you might want to end your search here.
+			                }
+			                break;
+			            case Node.ELEMENT_NODE : // 1
+			                queue.push(curr.childNodes[i]);
+			                break;
+			        }
+			    }
+			}
+			*/
+			
+			/**
+			 *   Loop trough all links of the page and store them in an array.
+			 */
+			 jQuery('a', y).each(function(idx,elem) {
+				 
+				 var link = jQuery(this);
+				 var a = link.get(0);			
+				 var href = link.attr("href");
+				 
+				 if (typeof href == "undefined")
+					 return true;
+
+				 var windowLocationPart1 = windowLocationA.protocol + "//" + windowLocationA.hostname + (windowLocationA.port == "" ? "" : ":" + windowLocationA.port);
+				 var baseUrlPart1 = baseUrlA.protocol + "//" + baseUrlA.hostname + (baseUrlA.port == "" ? "" : ":" + baseUrlA.port);
+				 
+				 if (a.hash != ""){
+				 	href = baseUrlA.href + a.hash;
+				 } else if (a.hostname == "") {
+					 href = baseUrlPart1 + a.pathname; 
+				 } else if (a.hostname == windowLocationA.hostname) {
+					 href = a.href.replace(windowLocationPart1, baseUrlPart1);
+				 }
+				 
+				 a = jQuery("<a href='" + href + "'>" + link.text() + "</a>");
+				 a.click(function(element) {
+					 r_uri.val(a.attr("href"));
+					 r_load.click();
+					 
+					 var hashValue = parseInt(document.location.hash.replace("#", ""))
+					 hashValue ++;
+					 document.location.hash = "#"  + hashValue;
+					 
+					 return false;
+				 });
+
+				 var li = jQuery("<li></li>").append(a);
+				 jQuery("#external").append(li);
+			 });
+
+			jQuery(jQuery("head", y).get(0)).append(jQuery("<style>.classLink { font-size:110%; border:solid 5px #ccf; }</style>"));
+			
+			var iframeContentDocument = jQuery(y);
+			jQuery(iframeContentDocument).styleTextNodes(classes, instances);
+		});
+
+		var iframeDom = iframe.get(0);
+		iframeDom.src = "file:///home/daniel/graph_db/client_code/wordpicker/test.html";
+
+		jQuery("#htmlContent").append(iframe);
+
+		var loadSuccessCallback = function(data, uri) {
+			// success
+			var a = jQuery("<a id='baseUriA' href='" + uri + "'>" + uri + "</a>'");
+			jQuery("#baseUri").html("");
+			jQuery("#baseUri").append(a);
+			
+			iframe.attr("src",
+					"http://localhost:1212/ctrlService/streamResource?uri=" + uri);
+		};
+		
+		r_load.click(function()
+		{
+			var uri = r_uri.val();
+
+			api.streamResource(uri,
+			function(data) {
+				loadSuccessCallback(data, uri);
+			}, 
+			function(data) {
+				// fail
+				if (!confirm("This page isn't crawled yet. Should it be crawled now?"))
+					return;
+				
+				// Crawl the resource and display it afterwards
+				var resource = api.crawl(uri, function() {
+					loadSuccessCallback(data, uri);
+				});
+			});
+			
+			return false;
+		});
+		
+		
+		
+		
+		jQuery(function(){
+
+			jQuery('#leftFilter').keyup(function(){
+		        
+		        var searchText = jQuery(this).val();
+		        
+		        jQuery('#foundHyperLinks ul li').each(function(){
+		            
+		        	var a = jQuery(jQuery(this).children().get(0));
+		            var currentLiText = a.text();
+		            var showCurrentLi = currentLiText.indexOf(searchText) !== -1;
+		            
+		            a.parent().toggle(showCurrentLi);
+		            
+		        });     
+		    });
+
+		});
+		
+
+	});
+</script>
+<style>
+body {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	
+	font-family:Arial,Helvetica,sans-serif;
+}
+
+#controls {
+	height: 10$;
+	width: 98%;
+}
+
+#htmlContent {
+	float:right;
+	overflow: auto;
+	width: 70%;
+	height: 90%;
+}
+
+#loadedPage {
+	width: 100%;
+	height: 100%;
+}
+
+#left {
+	float:left;
+	width:29%;
+	height:89%;
+	border-right:solid 1px #555;
+	
+	overflow:auto;
+}
+
+#selectedText {
+	width:400px;
+}
+
+</style>
+</head>
+<body>
+	<fieldset id="controls">
+		<legend> Load resource </legend>
+		<label for="r_uri">Uri:</label> <input type="text" id="r_uri" /> <input
+			type="submit" id="r_load" value="load" />
+		<input id="selectedText" type="text" />
+		<a href="">Add class</a>
+		<a href="">Add instance</a>
+		<a href="">Add place</a>
+		<a href="">Add dimension</a>
+		<a href="">Add predicate</a>
+	</fieldset>
+	<div id="left">
+		<div id="baseUri"></div>
+		<input type="text" id="leftFilter" />
+		<ul id="foundHyperLinks">
+			<li>
+				<p>On page links (anchors):</p>
+				<ul id="onPage">
+				<!-- Anchors etc. -->
+				</ul>
+			</li>
+			<li>
+				<p>Links to pages in same directory:</p>
+				<ul id="inFolder">
+				<!-- Every page in the same directory -->
+				</ul>
+			</li>
+			<li>
+				<p>All links on the same domain:</p>
+				<ul id="onDomain">
+				<!-- Every page in the same domain, including all pages inFolder -->
+				</ul>
+			</li>
+			<li>
+				<p>All links on the page:</p>
+				<ul id="external">
+				<!-- Every page in the same domain, including all pages inFolder -->
+				</ul>
+			</li>
+		</ul>
+		<ul id="foundClasses">
+		</ul>
+		<ul id="foundInstances">
+		</ul>
+	</div>
+	<div id="htmlContent"></div>
+</body>
+</html>
