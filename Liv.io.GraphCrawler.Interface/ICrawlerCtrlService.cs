@@ -13,7 +13,8 @@ namespace Liv.io.GraphCrawler.Interface
 		[OperationContract]
 		[WebGet(UriTemplate = "crawl?url={url}", ResponseFormat = WebMessageFormat.Json)]
 		Resource Crawl (string url);
-		
+
+		//  http://localhost:1212/ctrlService/streamResource?uri=http://en.wikipedia.org/wiki/Social_peer-to-peer_processes
 		[OperationContract]
 		[WebGet(UriTemplate = "streamResource?uri={uri}", ResponseFormat = WebMessageFormat.Json)]
 		Stream StreamResource (string uri) ;
@@ -65,6 +66,10 @@ namespace Liv.io.GraphCrawler.Interface
 		[OperationContract]
 		[WebGet(UriTemplate = "loadClassNodes", ResponseFormat = WebMessageFormat.Json)]
 		Node[] LoadClassNodes ();
+
+		[OperationContract]
+		[WebGet(UriTemplate = "loadInstanceNodes", ResponseFormat = WebMessageFormat.Json)]
+		Node[] LoadInstanceNodes ();
 
 		[OperationContract]
 		[WebGet(UriTemplate = "loadClientCode/apps/{app}")]

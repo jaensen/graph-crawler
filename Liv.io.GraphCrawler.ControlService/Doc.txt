@@ -29,3 +29,23 @@ _loads all edge data for all given edge IDs_
 
 * loadClientCode/apps/{app}  
 _loads static files from the configured "client_code" directory
+
+
+Filter syntax:
+ % =[]= geht massiv gegen [wütende|aufgebrachte] =X= vor %
+ Die {"Polizei" geht massiv gegen wütende "Demonstranten" vor}.
+ Die {"Polizei" geht massiv gegen "Demonstranten" vor}.
+ 
+ means: Match every part in a crawled page which has the above pattern.
+ =[]= - Capture instance or match existing instance
+ =%%= - Capture class or match existing class
+ =X=  - Capture as unknown node or match existing class or instance
+ ~[]~ - Match only if instance exists
+ ~%%~ - Match only if class exists
+ ~~   - Match only if instance or class exists
+ 
+ [] - Envelop for optional parts. Can contain multiple options devided by a pipe. 
+ Can also be [=[]=] or [=%%=] or [=[]=|=%%=] to describe that the query should succeed even if the class or instance is not found, the class or instance will not be stored because its optional 
+ 
+
+
