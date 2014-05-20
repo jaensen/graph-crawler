@@ -2,10 +2,23 @@ using System;
 
 namespace Liv.io.GraphCrawler
 {
-	public class EmptyClass
+	public class Person
 	{
-		public EmptyClass ()
+		public string Name {
+			get;
+			set;
+		}
+
+		public string FirstName {
+			get;
+			set;
+		}
+
+		public Person ()
 		{
+			Name =  "Samuel";
+
+			Name = FirstName;
 		}
 	}
 }

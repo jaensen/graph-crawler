@@ -141,12 +141,21 @@ namespace Liv.io.GraphCrawler.ControlService
 
 				_resources.AddResource(resource);
 
+				CreateNodeForResourceAndStateIsWebsite (resource);
+
 				return resource;
 
 			} catch (Exception ex) {
 				_logger.Log (ex);
 				throw;
 			}
+		}
+
+		private void CreateNodeForResourceAndStateIsWebsite (Resource resource)
+		{
+			Node websiteNode = AddNode (resource.Uri.ToString (), "Instance");
+			Node webpageClassNode = FindNodes ("Webpage").FirstOrDefault ();
+			Edge crawledSiteIsAWebpage = AddEdge (websiteNode.Id, webpageClassNode.Id, "is-a");
 		}
 
 		#region ICrawlerCtrlService implementation
@@ -164,6 +173,9 @@ namespace Liv.io.GraphCrawler.ControlService
 
 		public Stream StreamResource (string uri)
 		{
+			OutgoingWebResponseContext context = WebOperationContext.Current.OutgoingResponse;
+			context.ContentType = "text";
+
 			return _resources.StreamResource (uri);
 		}
 
@@ -357,6 +369,17 @@ namespace Liv.io.GraphCrawler.ControlService
 			}
 
 			return classesList.ToArray ();
+		}
+
+		public Node[] LoadInstanceNodes ()
+		{
+			List<Node> instanceList = new List<Node> (_nodes.Objects.Count);
+
+			foreach (DataRow instanceNode in _nodes.Objects.ToTable().Rows) {
+				instanceList.Add(RowToNode(instanceNode));
+			}
+
+			return instanceList.ToArray ();
 		}
 
 		#endregion

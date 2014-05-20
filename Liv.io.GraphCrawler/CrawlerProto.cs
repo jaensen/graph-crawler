@@ -65,6 +65,7 @@ namespace Liv.io.GraphCrawler
 
 		protected Resource Download ()
 		{
+			ServicePointManager.ServerCertificateValidationCallback += (o, certificate, chain, errors) => true;
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (Url);
 			
 			File = Guid.NewGuid ().ToString ();
