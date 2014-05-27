@@ -20,7 +20,6 @@ namespace Liv.io.GraphCrawler.ControlService
 			//
 			StartService ();
 		}
-		
 
 		public static void StartService ()
 		{
@@ -30,7 +29,7 @@ namespace Liv.io.GraphCrawler.ControlService
 
 				_serviceHost.Open ();
 
-			} catch (Exception ) {
+			} catch (Exception) {
 
 				throw;
 			}

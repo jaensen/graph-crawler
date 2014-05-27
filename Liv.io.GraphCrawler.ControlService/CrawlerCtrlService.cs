@@ -52,7 +52,7 @@ namespace Liv.io.GraphCrawler.ControlService
 		public CrawlerCtrlService ()
 		{
 			_logger = new ConsoleLogger ();
-			_uniqueIdProvider = new GuidUniqueIdProvider ();
+			_uniqueIdProvider = new IntUniqueIdProvider ();
 			_dataDirectory = Properties.Settings.Default.DataDirectory;
 
 			_nodes = new NodeCache ();

@@ -97,9 +97,8 @@ namespace Liv.io.GraphCrawler
 				if (!Regex.IsMatch (content, (row ["Uri"] as string) + "\\W"))
 					continue;
 
-				if (!resource.ReferencedResources.Contains (row ["Uri"]as string)) {
+				if (!resource.ReferencedResources.Contains (row ["Uri"]as string)) 
 					resource.ReferencedResources.Add (row ["Uri"] as string);
-				}
 			}
 
 			foreach (DataRow row in NodesCache.NodesTable.Rows) { 

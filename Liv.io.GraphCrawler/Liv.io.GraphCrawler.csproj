@@ -47,6 +47,7 @@
     <Compile Include="CrawlerProto.cs" />
     <Compile Include="IndexedResource.cs" />
     <Compile Include="ResourceCache.cs" />
+    <Compile Include="ParserProto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

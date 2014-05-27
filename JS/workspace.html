@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>WebWorkstation</title>
+		<script type="text/javascript" src="jQuery.js"></script>
+		<script type="text/javascript" src="Class.js"></script>
+		<script type="text/javascript" src="GraphDbApi.js"></script>
+		<link rel="stylesheet" href="workspace.css" />
+	</head>
+	<body>
+		<div class="toolBar" id="titleBar">
+			<span class="toolBarItem caption">titleBar</span>
+		</div>
+		<div class="toolBar" id="controlBar">
+			<span class="toolBarItem button">&lt;-</span>
+			<span class="toolBarItems eparator">&nbsp;</span>
+			<span class="toolBarItem button">-&gt;</span>
+			<span class="toolBarItem separator">&nbsp;</span>
+			<span class="toolBarItem button">Reload</span>
+			<span class="toolBarItem separator">&nbsp;</span>
+			<span class="toolBarItem button">X</span>
+			<span class="toolBarItem separator">&nbsp;</span>
+			<span class="toolBarItem caption">Adress:</span>
+			<span class="toolBarItem input">
+				<input type="text" name="urlInput" id="urlInput" value="http://" />
+			</span>
+			<span class="toolBarItem button">GO!</span>
+		</div>
+		<div class="toolBar" id="tabBar">
+			<span class="toolBarItem tab">
+				<span class="tabButton">X</span>
+				<span class="tabCaption">tab1</span>
+			</span>
+			<span class="toolBarItem tab">
+				<span class="tabButton">X</span>
+				<span class="tabCaption">tab2</span>
+			</span>
+			<span class="toolBarItem tab">
+				<span class="tabButton">X</span>
+				<span class="tabCaption">tab3</span>
+			</span>
+			<span class="toolBarItem tab">
+				<span class="tabButton">X</span>
+				<span class="tabCaption">tab4</span>
+			</span>
+		</div>
+		<div id="main">
+			<div id="sideBar">
+				<div class="toolBar" id="sideControlBar">
+					<span class="toolBarItem caption">sideBar</span>
+				</div>
+			</div>
+			<div id="contentArea">
+				<iframe id="contentFrame" frameborder="no"></iframe>
+			</div>
+		</div>
+		<div id="footer">
+			<span class="caption">footer</span>
+		</div>
+	</body>
+</html>

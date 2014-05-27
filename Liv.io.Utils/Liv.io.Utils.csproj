@@ -49,6 +49,9 @@
     <Compile Include="ILogEntry.cs" />
     <Compile Include="ExceptionMessageBuilder.cs" />
     <Compile Include="GuidUniqueIdProvider.cs" />
+    <Compile Include="IUniqueIdBlockProvider.cs" />
+    <Compile Include="FilesystemIntUniqueIdBlockProvider.cs" />
+    <Compile Include="IntUniqueIdProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
