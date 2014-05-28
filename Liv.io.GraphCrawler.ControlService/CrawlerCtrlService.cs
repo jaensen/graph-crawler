@@ -208,9 +208,11 @@ namespace Liv.io.GraphCrawler.ControlService
 		public Edge AddEdge (string fromNode, string toNode, string predicate)
 		{
 			try {
+				string uniqueId = _uniqueIdProvider.GetUniqueId ();
+
 				DataRow edgeRow = _edges.AddEdge (fromNode,
 				                                  toNode,
-				                                  _uniqueIdProvider.GetUniqueId (),
+				                                  uniqueId,
 				                                  "",
 				                                  predicate,
 				                                  1);

@@ -1,56 +1,86 @@
 <html>
 	<head>
 		<title>WebWorkstation</title>
+		<script type="text/javascript" src="utils.js"></script>
 		<script type="text/javascript" src="jQuery.js"></script>
 		<script type="text/javascript" src="Class.js"></script>
 		<script type="text/javascript" src="GraphDbApi.js"></script>
+		<script type="text/javascript" src="workspace.js"></script>
+		<script type="text/javascript" src="workspaceTab.js"></script>
+		<script type="text/javascript" src="workspaceTabBar.js"></script>
+		<script type="text/javascript" src="workspaceContentFrame.js"></script>
+		<script type="text/javascript" src="workspaceContentFrameManager.js"></script>
 		<link rel="stylesheet" href="workspace.css" />
+		<script type="text/javascript">
+		jQuery(function() {
+			var application = new workspace();
+		});
+		</script>
 	</head>
 	<body>
 		<div class="toolBar" id="titleBar">
 			<span class="toolBarItem caption">titleBar</span>
 		</div>
 		<div class="toolBar" id="controlBar">
-			<span class="toolBarItem button">&lt;-</span>
+			<span class="toolBarItem button" id="navigateBack">&lt;-</span>
 			<span class="toolBarItems eparator">&nbsp;</span>
-			<span class="toolBarItem button">-&gt;</span>
+			<span class="toolBarItem button" id="navigateForward">-&gt;</span>
 			<span class="toolBarItem separator">&nbsp;</span>
-			<span class="toolBarItem button">Reload</span>
+			<span class="toolBarItem button" id="navigationReload">Reload</span>
 			<span class="toolBarItem separator">&nbsp;</span>
-			<span class="toolBarItem button">X</span>
+			<span class="toolBarItem button" id="navigationCancel">X</span>
 			<span class="toolBarItem separator">&nbsp;</span>
 			<span class="toolBarItem caption">Adress:</span>
-			<span class="toolBarItem input">
-				<input type="text" name="urlInput" id="urlInput" value="http://" />
+			<span class="toolBarItem input" id="navigationUrl">
+				<input type="text" name="urlInput" id="navigationAddress" value="http://" />
 			</span>
-			<span class="toolBarItem button">GO!</span>
+			<span class="toolBarItem button" id="navigationNavigate">GO!</span>
 		</div>
 		<div class="toolBar" id="tabBar">
-			<span class="toolBarItem tab">
-				<span class="tabButton">X</span>
-				<span class="tabCaption">tab1</span>
-			</span>
-			<span class="toolBarItem tab">
-				<span class="tabButton">X</span>
-				<span class="tabCaption">tab2</span>
-			</span>
-			<span class="toolBarItem tab">
-				<span class="tabButton">X</span>
-				<span class="tabCaption">tab3</span>
-			</span>
-			<span class="toolBarItem tab">
-				<span class="tabButton">X</span>
-				<span class="tabCaption">tab4</span>
-			</span>
+			<span class="toolBarItem tab"> <span class="tabButton button">X</span> <span class="tabCaption">tab1</span> </span>
+			<span class="toolBarItem tab"> <span class="tabButton button">X</span> <span class="tabCaption">tab2</span> </span>
+			<span class="toolBarItem tab"> <span class="tabButton button">X</span> <span class="tabCaption">tab3</span> </span>
+			<span class="toolBarItem tab"> <span class="tabButton button">X</span> <span class="tabCaption">tab4</span> </span>
+			<span class="toolBarItem tab"> <span class="tabButton button" id="newTab">+</span></span>
 		</div>
 		<div id="main">
 			<div id="sideBar">
 				<div class="toolBar" id="sideControlBar">
 					<span class="toolBarItem caption">sideBar</span>
+					<span class="toolBarItem button right">&lt;-</span>
 				</div>
 			</div>
-			<div id="contentArea">
-				<iframe id="contentFrame" frameborder="no"></iframe>
+			<div class="contentArea" id="tab1_Content">
+				<div class="toolBar" id="contentControlBar">
+					<span class="toolBarItem caption block">contentToolbar</span>
+					<input type="text" name="urlInput" class="kbInput" value="" />
+					<span class="toolBarItem button">Add to KB</span>
+				</div>
+				<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
+			</div>
+			<div class="contentArea hidden" id="tab2_Content">
+				<div class="toolBar" id="contentControlBar">
+					<span class="toolBarItem caption block">contentToolbar</span>
+					<input type="text" name="urlInput" class="kbInput" value="" />
+					<span class="toolBarItem button">Add to KB</span>
+				</div>
+				<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
+			</div>
+			<div class="contentArea hidden" id="tab3_Content">
+				<div class="toolBar" id="contentControlBar">
+					<span class="toolBarItem caption block">contentToolbar</span>
+					<input type="text" name="urlInput" class="kbInput" value="" />
+					<span class="toolBarItem button">Add to KB</span>
+				</div>
+				<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
+			</div>
+			<div class="contentArea hidden" id="tab4_Content">
+				<div class="toolBar">
+					<span class="toolBarItem caption block">contentToolbar</span>
+					<input type="text" name="urlInput" class="kbInput" value="" />
+					<span class="toolBarItem button">Add to KB</span>
+				</div>
+				<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
 			</div>
 		</div>
 		<div id="footer">

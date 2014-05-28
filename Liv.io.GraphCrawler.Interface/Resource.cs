@@ -13,7 +13,13 @@ namespace Liv.io.GraphCrawler.Interface
 			ReferencedObjects = new List<string> ();
 			ReferencedResources = new List<string> ();
 		}
-		
+
+		[DataMember]
+		public string ContentType {
+			get;
+			set;
+		}
+
 		[DataMember]
 		public List<string> ReferencedResources {
 			get;
@@ -25,25 +31,25 @@ namespace Liv.io.GraphCrawler.Interface
 			get;
 			set;
 		}
-		
+
 		[DataMember]
 		public List<string> ReferencedClasses {
 			get;
 			set;
 		}
-		
+
 		[DataMember]
 		public List<string> ReferencedObjects {
 			get;
 			set;
 		}
-		
+
 		[DataMember]
 		public string FilesystemLocation {
 			get;
 			set;
 		}
-		
+
 		[DataMember]
 		public string Title {
 			get;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Data;
 using Liv.io.GraphCrawler.Interface;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace Liv.io.GraphCrawler
 {
@@ -83,36 +84,132 @@ namespace Liv.io.GraphCrawler
 				Uri = new Uri(Url),
 				FilesystemLocation = File,
 				Title = "",
+				ContentType = response.ContentType
 			};
 
 			return res;
 		}
 
 		protected Resource Parse (Resource resource)
-		{			
-			string content = System.IO.File.ReadAllText (FullPath);
+		{
+			if (resource.ContentType.ToLower ().Contains ("html")) {
 
-			foreach (DataRow row in ResourceCache.Resources.Rows) { 
-				
-				if (!Regex.IsMatch (content, (row ["Uri"] as string) + "\\W"))
-					continue;
+				using (Stream stream = System.IO.File.OpenRead(FullPath)) 
+				using (StreamReader streamReader = new StreamReader(stream)) {
 
-				if (!resource.ReferencedResources.Contains (row ["Uri"]as string)) 
-					resource.ReferencedResources.Add (row ["Uri"] as string);
+					SgmlParser parser = new SgmlParser ();
+					XmlDocument xmlDom = parser.ParseSgml (streamReader);
+
+					Stack<XmlNode> nodes = new Stack<XmlNode> ();
+
+					foreach (XmlNode node in xmlDom.ChildNodes) {
+						nodes.Push (node);
+					}
+
+					while (nodes.Count > 0) {
+						var node = nodes.Pop ();
+
+						switch (node.NodeType) {
+						case XmlNodeType.None:
+						case XmlNodeType.XmlDeclaration:
+						case XmlNodeType.ProcessingInstruction:
+						case XmlNodeType.DocumentFragment:
+						case XmlNodeType.Whitespace:
+						case XmlNodeType.Entity:
+						case XmlNodeType.DocumentType:
+						case XmlNodeType.Document:
+						case XmlNodeType.Comment:
+						case XmlNodeType.Notation:
+						case XmlNodeType.SignificantWhitespace:
+						case XmlNodeType.EndElement:
+						case XmlNodeType.EndEntity:
+						case XmlNodeType.EntityReference:
+						case XmlNodeType.Attribute:
+						default:
+							continue;
+					
+						case XmlNodeType.Element:
+
+							// split into words and get the x-path to the node
+							if (node.Value == null)
+								break;
+
+							string[] words = node.Value.Split (new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+							string xpath = GetXPathToNode (node);
+
+							System.Diagnostics.Debug.WriteLine (xpath + string.Join ("-", words));
+
+							break;
+						case XmlNodeType.Text:
+							break;
+						case XmlNodeType.CDATA:
+							break;
+						}
+
+						foreach (XmlNode innerNode in node.ChildNodes) {
+							nodes.Push (innerNode);
+						}
+					}
+				}
+			} else {
+
 			}
 
-			foreach (DataRow row in NodesCache.NodesTable.Rows) { 
 
-				if (!Regex.IsMatch (content, (row ["Label"] as string) + "\\W"))
-					continue;
+			#region Old?!
+//
+//
+//			// Look for URIs which are already crawled
+//			foreach (DataRow row in ResourceCache.Resources.Rows) { 
+//				
+//				if (!Regex.IsMatch (content, (row ["Uri"] as string) + "\\W"))
+//					continue;
+//
+//				if (!resource.ReferencedResources.Contains (row ["Uri"]as string)) 
+//					resource.ReferencedResources.Add (row ["Uri"] as string);
+//			}
+//
+//			// Look for already crawled class- and instance-names 
+//			foreach (DataRow row in NodesCache.NodesTable.Rows) { 
+//
+//				if (!Regex.IsMatch (content, (row ["Label"] as string) + "\\W"))
+//					continue;
+//
+//				if (row ["Type"] as string == "Class") 
+//					resource.ReferencedClasses.Add (row ["Id"] as string);
+//				else if (row ["Type"] as string == "Instance") 
+//					resource.ReferencedObjects.Add (row ["Id"] as string);				
+//			}
 
-				if (row ["Type"] as string == "Class") 
-					resource.ReferencedClasses.Add (row ["Id"] as string);
-				else if (row ["Type"] as string == "Instance") 
-					resource.ReferencedObjects.Add (row ["Id"] as string);				
-			}
+			#endregion
 
 			return resource;
+		}
+
+		/// <summary>
+		/// Gets the X-Path to a given Node
+		/// </summary>
+		/// <param name="node">The Node to get the X-Path from</param>
+		/// <returns>The X-Path of the Node</returns>
+		public string GetXPathToNode (XmlNode node)
+		{
+			if (node.NodeType == XmlNodeType.Attribute)
+				return String.Format ("{0}/@{1}", GetXPathToNode (((XmlAttribute)node).OwnerElement), node.Name);
+
+			if (node.ParentNode == null)
+				return "";
+
+			int indexInParent = 1;
+			XmlNode siblingNode = node.PreviousSibling;
+
+			while (siblingNode != null) {
+				if (siblingNode.Name == node.Name)
+					indexInParent++;
+
+				siblingNode = siblingNode.PreviousSibling;
+			}
+
+			return String.Format ("{0}/{1}[{2}]", GetXPathToNode (node.ParentNode), node.Name, indexInParent);
 		}
 	}
 }

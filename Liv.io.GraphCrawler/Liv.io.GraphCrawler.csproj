@@ -39,6 +39,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="SgmlReaderDll">
+      <HintPath>..\SgmlReaderDll.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -47,7 +50,7 @@
     <Compile Include="CrawlerProto.cs" />
     <Compile Include="IndexedResource.cs" />
     <Compile Include="ResourceCache.cs" />
-    <Compile Include="ParserProto.cs" />
+    <Compile Include="SgmlParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

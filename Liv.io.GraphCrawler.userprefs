@@ -1,25 +1,14 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Liv.io.GraphCrawler.ControlService/Properties/App.config">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Liv.io.GraphCrawler/NodeCache.cs">
     <Files>
-      <File FileName="Liv.io.GraphCrawler.ControlService/CrawlerCtrlService.cs" Line="1" Column="1" />
-      <File FileName="Liv.io.GraphCrawler/CrawlerProto.cs" Line="1" Column="1" />
-      <File FileName="Liv.io.GraphCrawler/ParserProto.cs" Line="1" Column="1" />
-      <File FileName="Liv.io.GraphCrawler.ControlService/Properties/App.config" Line="8" Column="15" />
+      <File FileName="Liv.io.GraphCrawler/NodeCache.cs" Line="19" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Integration" expanded="True">
-            <Node name="Stuff" expanded="True" />
-          </Node>
-          <Node name="JS" expanded="True" />
+        <State expanded="True" selected="True">
           <Node name="Liv.io.GraphCrawler" expanded="True" />
-          <Node name="Liv.io.GraphCrawler.ControlService" expanded="True">
-            <Node name="Properties" expanded="True">
-              <Node name="App.config" selected="True" />
-            </Node>
-          </Node>
+          <Node name="Liv.io.GraphCrawler.ControlService" expanded="True" />
           <Node name="Liv.io.GraphCrawler.Interface" expanded="True" />
           <Node name="Liv.io.Utils" expanded="True" />
         </State>

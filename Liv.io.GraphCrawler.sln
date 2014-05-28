@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{404B75D8-7687-40BD-A980-C2D6CAC200B4}"
 	ProjectSection(SolutionItems) = preProject
 		Json.Net\Newtonsoft.Json.dll = Json.Net\Newtonsoft.Json.dll
+		SgmlReaderDll.dll = SgmlReaderDll.dll
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JS", "JS", "{E2E4C8E3-E90F-49D6-8063-CF2E3CB1FE92}"
