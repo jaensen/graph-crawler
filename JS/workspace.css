@@ -71,6 +71,10 @@ body {
 	background: #eee;
 }
 
+.active {
+	background:#DEDEDE;
+}
+
 #titleBar {
 	font-size:120%;
 }

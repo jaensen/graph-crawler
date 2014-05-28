@@ -3,7 +3,15 @@
  */
 var workspace = Class.extend({
 
+	/**
+	 * Contains a reference to the tab bar controller.
+	 */
 	tabBar : null,
+	
+	/**
+	 * Contains a reference to the content frame controller.
+	 */
+	contentFrameController : null,
 
 	/**
 	 * Contains the url input control from the main toolbar.
@@ -11,31 +19,55 @@ var workspace = Class.extend({
 	addressInput : null,
 	
 	/**
+	 * A global counter which is used to get unique IDs for html elements.
+	 */
+	globalCounter : 0,
+	
+	/**
 	 * Creates a new instance of this class.
 	 */
 	init: function () {
-		this.wire_controlVariables();
-		this.wire_controlBar();
-		this.wire_tabBar();
+		this._wire_controlVariables();
+		this._wire_controlBar();
+		this._wire_tabBar();
+	},
+	
+	/**
+	 * Increments the gloabl id by one and returns the value.
+	 */
+	_getId : function () {
+		return this.globalCounter++;
 	},
 	
 	/**
 	 * Caches frequently used controls in member variables.
 	 */
-	wire_controlVariables : function() {
+	_wire_controlVariables : function() {
 		this.addressInput = jQuery("#navigationAddress");
 	},
 	
 	/**
 	 * Wires all events concerning the main toolbar.
 	 */
-	wire_controlBar : function() {
+	_wire_controlBar : function() {
 		
-		jQuery("#navigateBack").click(this.navigateBack);
-		jQuery("#navigateForward").click(this.navigateForward);
-		jQuery("#navigationReload").click(this.navigationReload);
-		jQuery("#navigationCancel").click(this.navigationCancel);
-		jQuery("#navigationNavigate").click(this.navigationNavigate);
+		var _this = this;
+		
+		jQuery("#navigateBack").click(function(event) {
+			_this.navigateBack();
+		});
+		jQuery("#navigateForward").click(function(event) {
+			_this.navigateForward();
+		});
+		jQuery("#navigationReload").click(function(event) {
+			_this.navigationReload();
+		});
+		jQuery("#navigationCancel").click(function(event) {
+			_this.navigationCancel();
+		});
+		jQuery("#navigationNavigate").click(function(event) {
+			_this.navigationNavigate();
+		});
 		
 		var _this = this;
 		this.addressInput.keyup(function(event) {
@@ -50,47 +82,60 @@ var workspace = Class.extend({
 	/**
 	 * Wires all events concerning the tab bar.
 	 */
-	wire_tabBar : function() {
-		this.tabBar = new workspaceTabBar();
+	_wire_tabBar : function() {
+		this.tabBar = new workspaceTabBar(this);
 		var _this = this;
 		
 		jQuery("#newTab").click(function(event) {
 			_this.tabBar.newTab();
 		});
 	},
+	
+	/**
+	 * 
+	 */
+	_wire_contentFrameManager : function() {
+		
+	},
+	
+	_checkEnvironment : function () {
+		if (this.tabBar.activeTab == undefined || this.tabBar.activeTab == null)
+			throw new Exception("No active tab!");
+	},
 
 	/**
 	 * Navigates back.
 	 */
 	navigateBack : function() {
-		
+		this._checkEnvironment();
 	},
 	
 	/**
 	 * Navigates forward.
 	 */
 	navigateForward : function() {
-		
+		this._checkEnvironment();
 	},
 	
 	/**
 	 * Reloads the contents of the active tab.
 	 */
 	navigationReload : function() {
-		
+		this._checkEnvironment();
 	},
 	
 	/**
 	 * Cancels the loading of the active tab.
 	 */
 	navigationCancel : function() {
-		
+		this._checkEnvironment();
 	},
 	
 	/**
 	 * Navigates to the URI which was entered in the this.addressInput control.
 	 */
 	navigationNavigate : function() {
+		this._checkEnvironment();
 		alert(this.addressInput.val());
 	},
 });

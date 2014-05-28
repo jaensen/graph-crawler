@@ -19,9 +19,17 @@ var workspaceTabBar = Class.extend({
 	_this : null,
 	
 	/**
+	 * Contains a reference to the workspace.
+	 */
+	workspace : null,
+	
+	/**
 	 * Creates a new instance of the tab bar controller.
 	 */
-	init: function () {
+	init: function (workspace) {
+		if (workspace == null || typeof workspace == "undefined")
+			throw new Exception("The workpsapce parameter is null or undefined!");
+		
 		this._this = this;
 	},
 	
