@@ -9,9 +9,9 @@ var workspace = Class.extend({
 	tabBar : null,
 	
 	/**
-	 * Contains a reference to the content frame controller.
+	 * Contains a reference to the content frame manager.
 	 */
-	contentFrameController : null,
+	contentFrameManager : null,
 
 	/**
 	 * Contains the url input control from the main toolbar.
@@ -24,12 +24,19 @@ var workspace = Class.extend({
 	globalCounter : 0,
 	
 	/**
+	 * Contains a reference to the templateManager.
+	 */
+	templateManager : null,
+	
+	/**
 	 * Creates a new instance of this class.
 	 */
 	init: function () {
 		this._wire_controlVariables();
+		this._wire_templateManager();
 		this._wire_controlBar();
 		this._wire_tabBar();
+		this._wire_contentFrameManager();
 	},
 	
 	/**
@@ -83,7 +90,7 @@ var workspace = Class.extend({
 	 * Wires all events concerning the tab bar.
 	 */
 	_wire_tabBar : function() {
-		this.tabBar = new workspaceTabBar(this);
+		this.tabBar = new workspaceTabManager(this);
 		var _this = this;
 		
 		jQuery("#newTab").click(function(event) {
@@ -92,15 +99,22 @@ var workspace = Class.extend({
 	},
 	
 	/**
-	 * 
+	 * Wires the content frame manager.
 	 */
 	_wire_contentFrameManager : function() {
-		
+		this.contentFrameManager = new workspaceContentFrameManager(this);
 	},
+	
+	/**
+	 * Wires the template manager.
+	 */
+	_wire_templateManager : function() {
+		this.templateManager = new workspaceTemplateManager();
+	},	
 	
 	_checkEnvironment : function () {
 		if (this.tabBar.activeTab == undefined || this.tabBar.activeTab == null)
-			throw new Exception("No active tab!");
+			throw "No active tab!";
 	},
 
 	/**

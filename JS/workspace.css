@@ -5,6 +5,13 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+#_templates {
+	display:none;
+}
+
+._template {
+}
+
 .toolBar {
 	border-bottom: 1px solid #aaa;
 	padding-left: 5px;
