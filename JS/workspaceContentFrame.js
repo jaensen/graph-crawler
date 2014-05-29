@@ -10,16 +10,38 @@ var workspaceContentFrame = Class.extend({
 	id : 0,
 	
 	/**
-	 * Contains a reference to this object.
-	 */
-	_this : null,
-	
-	/**
 	 * Creates a new instance of the content frame class.
 	 */
 	init : function() {
-		this._this = this;
 	},
-
 	
+	/**
+	 * Navigates back.
+	 */
+	back : function() {
+	},
+	
+	/**
+	 * Navigates forward.
+	 */
+	forward : function() {
+	},
+	
+	/**
+	 * Reloads the contents of the active tab.
+	 */
+	reload : function() {
+	},
+	
+	/**
+	 * Cancels the loading of the active tab.
+	 */
+	cancel : function() {
+	},
+	
+	/**
+	 * Navigates to the URI which was entered in the this.addressInput control.
+	 */
+	navigate : function() {
+	},
 });

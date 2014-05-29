@@ -77,6 +77,8 @@ var workspaceTabManager = Class.extend({
 		
 		this.tabs.push(newTab);
 		this.switchTab(newTab);
+	
+		return newTab;
 	},
 	
 	/**
@@ -100,7 +102,7 @@ var workspaceTabManager = Class.extend({
 	 */
 	closeTab : function(tab) {
 		throwNullOrUndefined(tab, "The tab parameter is not allowed to be null or undefined.");
-		
-		alert("closing tab " + tab.id);		
+
+		tabs.remove();
 	}
 });

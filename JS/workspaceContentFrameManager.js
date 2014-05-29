@@ -13,8 +13,19 @@ var workspaceContentFrameManager = Class.extend({
 	 */
 	workspace : null,
 	
-	
+	/**
+	 * Contains a reference to the template manager.
+	 */
 	templateManager : null,
+	
+	/**
+	 * Contains a reference to the currently active content frame (if any)
+	 */
+	activeContentFrame : null,
+	
+	contentFrameContainerId : "",
+	
+	contentFrameTemplateId : "_contentArea",
 	
 	/**
 	 * Creates a new instance of the workspaceContentFrameManager.
@@ -30,5 +41,17 @@ var workspaceContentFrameManager = Class.extend({
 		this.templateManager = this.workspace.templateManager;
 		
 		this._this = this;
+	},
+	
+	newFrame : function () {
+		
+	},
+	
+	switchFrame : function (toFrame) {
+		
+	},
+	
+	closeFrame : function(frame) {
+		
 	}
 });

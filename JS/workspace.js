@@ -106,7 +106,8 @@ var workspace = Class.extend({
 	},	
 	
 	_checkEnvironment : function () {
-		throwNullOrUndefined(this.tabBar.activeTab, "No active tab!");
+		throwNullOrUndefined(this.tabManager.activeTab, "No active tab!");
+		throwNullOrUndefined(this.contentFrameManager.activeContentFrame, "No active content frame!");
 	},
 	
 	/**
@@ -121,6 +122,8 @@ var workspace = Class.extend({
 	 */
 	navigateBack : function() {
 		this._checkEnvironment();
+		
+		this.contentFrameManager.activeContentFrame.back();
 	},
 	
 	/**
@@ -128,6 +131,8 @@ var workspace = Class.extend({
 	 */
 	navigateForward : function() {
 		this._checkEnvironment();
+		
+		this.contentFrameManager.activeContentFrame.forward();
 	},
 	
 	/**
@@ -135,6 +140,8 @@ var workspace = Class.extend({
 	 */
 	navigationReload : function() {
 		this._checkEnvironment();
+		
+		this.contentFrameManager.activeContentFrame.reload();
 	},
 	
 	/**
@@ -142,6 +149,8 @@ var workspace = Class.extend({
 	 */
 	navigationCancel : function() {
 		this._checkEnvironment();
+		
+		this.contentFrameManager.activeContentFrame.cancel();
 	},
 	
 	/**
@@ -149,6 +158,7 @@ var workspace = Class.extend({
 	 */
 	navigationNavigate : function() {
 		this._checkEnvironment();
-		alert(this.addressInput.val());
+		
+		this.contentFrameManager.activeContentFrame.navigate();	
 	},
 });
