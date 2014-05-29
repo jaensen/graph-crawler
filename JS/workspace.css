@@ -63,6 +63,18 @@ body {
 	display:none;
 }
 
+.visible_block {
+	display:block;
+}
+
+.visible_inlineBlock {
+	display:inline-block;
+}
+
+.visible_inline {
+	display:inline;
+}
+
 .urlInput {
 	min-width: 300px;
 }

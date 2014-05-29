@@ -80,6 +80,9 @@ var workspaceTabManager = Class.extend({
 		jQuery("#" + this.tabContainerId).append(tabElement);
 		
 		this.tabs.push(newTab);
+		
+		this._fireOnNewTab(newTab);
+		
 		this.switchTab(newTab);
 	
 		return newTab;
@@ -110,7 +113,7 @@ var workspaceTabManager = Class.extend({
 		
 		throwNullOrUndefined(tab, "The tab parameter is not allowed to be null or undefined.");
 
-		this.tabs.remove(this.tabs.indexOf(tab), 1);
+		this.tabs.remove(this.tabs.indexOf(tab));
 		jQuery("#tab" + tab.id).remove();
 		
 		this._fireTabClosed(tab);
@@ -122,6 +125,20 @@ var workspaceTabManager = Class.extend({
 	/************************************************************************************
 	 * Events
 	 */
+	
+	onNewTabCallbacks : [],
+
+	onNewTab : function (callback) {
+		throwNullOrUndefined(callback, "The callback parameter is null or undefined!");
+		
+		this.onNewTabCallbacks.push(callback);
+	},
+	
+	_fireOnNewTab : function(newTab) {
+		for (var i = 0; i < this.onNewTabCallbacks.length; i++) {
+			this.onNewTabCallbacks[i](newTab);
+		}
+	},	
 	
 	onTabSwitchedCallbacks : [],
 	/**
@@ -156,6 +173,9 @@ var workspaceTabManager = Class.extend({
 	},
 	
 	_fireTabClosed: function(tab) {
+		
+		throwNullOrUndefined(tab, "The tab parameter is null or undefined!");
+		
 		for (var i = 0; i < this.onTabClosedCallbacks.length; i++) {
 			this.onTabClosedCallbacks[i](tab);
 		}

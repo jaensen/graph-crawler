@@ -15,9 +15,25 @@ var workspaceContentFrame = Class.extend({
 	editMode : false,
 	
 	/**
+	 * Contains the history of all visited urls (acts as stack).
+	 */
+	history : [],
+	
+	/**
+	 * Contains the currently displayed url.
+	 */
+	activeUrl : "", 
+	
+	/**
+	 * Collects all pages which are passed when navigating backwards (acts as stack). 
+	 */
+	future : [],
+	
+	/**
 	 * Creates a new instance of the content frame class.
 	 */
-	init : function() {
+	init : function(id) {
+		this.id = id;
 	},
 	
 	/**

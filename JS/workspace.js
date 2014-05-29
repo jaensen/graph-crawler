@@ -95,8 +95,17 @@ var workspace = Class.extend({
 			_this.tabManager.newTab();
 		});
 
-		this.tabManager.onTabSwitched(this._handleTabSwitched);
-		this.tabManager.onTabClosed(this._handleTabClosed);
+		this.tabManager.onNewTab(function(newTab) {
+			_this._handleNewTab(newTab);
+		});
+
+		this.tabManager.onTabSwitched(function(activeTab) {
+			_this._handleTabSwitched(activeTab);
+		});
+
+		this.tabManager.onTabClosed(function(closedTab) {
+			_this._handleTabClosed(closedTab);
+		});
 	},
 	
 	/**
@@ -179,11 +188,15 @@ var workspace = Class.extend({
 	/************************************************************************************
 	 * Event handlers
 	 */	
+	_handleNewTab : function(newTab) {
+		this.contentFrameManager.newFrame(newTab.id);
+	},
+	
 	_handleTabSwitched : function(activeTab) {
-		//alert(activeTab.id);
+		this.contentFrameManager.switchFrame(this.contentFrameManager.getFrameById(activeTab.id));
 	},
 	
 	_handleTabClosed : function(closedTab) {
-		//alert(closedTab.id);
+		this.contentFrameManager.closeFrame(this.contentFrameManager.getFrameById(closedTab.id));
 	},
 });

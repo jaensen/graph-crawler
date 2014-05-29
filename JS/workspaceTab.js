@@ -9,26 +9,6 @@ var workspaceTab = Class.extend({
 	id : 0,
 	
 	/**
-	 * Contains the history of all visited urls (acts as stack).
-	 */
-	history : [],
-	
-	/**
-	 * Contains the currently displayed url.
-	 */
-	activeUrl : "", 
-	
-	/**
-	 * Collects all pages which are passed when navigating backwards (acts as stack). 
-	 */
-	future : [],
-	
-	/**
-	 * Contains the content frame which is used to display the this.activeUrl.
-	 */
-	contentFrame : null,
-	
-	/**
 	 * Contains the title of the tab.
 	 */
 	title : "New tab",
