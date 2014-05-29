@@ -31,12 +31,7 @@ var workspaceTab = Class.extend({
 	/**
 	 * Contains the title of the tab.
 	 */
-	title : "",
-	
-	/**
-	 * A event which is fired when the tab's title changed.
-	 */
-	titleChanged : null,
+	title : "Test title",
 	
 	/**
 	 * Contains a reference to this object.
@@ -50,8 +45,6 @@ var workspaceTab = Class.extend({
 	init: function (id) {
 		this.id = id;
 		this._this = this;
-		
-		this.titleChanged = new Event();
 	},
 	
 	setTitle : function(title) {
@@ -92,5 +85,5 @@ var workspaceTab = Class.extend({
 	 */
 	navigationNavigate : function(url) {
 		
-	}
+	},
 });

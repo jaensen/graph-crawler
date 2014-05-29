@@ -59,10 +59,24 @@ var workspaceTabManager = Class.extend({
 		var newTab = new workspaceTab(tabId);
 		
 		var tabHtml = this.templateManager.render(this.tabTemplateId, newTab);
-		jQuery("#" + this.tabContainerId).append(tabHtml);
+		var tabElement = jQuery(tabHtml);
+		
+		var _this = this;
+
+		// add the close handler to the new tab 
+		jQuery(".close", tabElement).click(function (){
+			_this.closeTab(newTab);
+		});
+		
+		// add the select handler to the new tab
+		jQuery(".tabCaption", tabElement).click(function (){
+			_this.switchTab(newTab);
+		});
+		
+		jQuery("#" + this.tabContainerId).append(tabElement);
 		
 		this.tabs.push(newTab);
-		this.switchTab(newTab);		
+		this.switchTab(newTab);
 	},
 	
 	/**
@@ -74,6 +88,10 @@ var workspaceTabManager = Class.extend({
 		throwNullOrUndefined(toTab, "The workspaceTabBar.switchTab(toTab) method expects a valid workspaceTab-instance! Undefined or null was supplied.");
 		
 		this.activeTab = toTab;
+		for(var i = 0; i < this.tabs.length; i ++) {
+			jQuery("#tab" + this.tabs[i].id).removeClass("active");
+		}
+		jQuery("#tab" + toTab.id).addClass("active");
 	},
 	
 	/**
@@ -81,6 +99,8 @@ var workspaceTabManager = Class.extend({
 	 * @param tab The tab to close.
 	 */
 	closeTab : function(tab) {
+		throwNullOrUndefined(tab, "The tab parameter is not allowed to be null or undefined.");
 		
+		alert("closing tab " + tab.id);		
 	}
 });
