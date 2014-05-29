@@ -11,10 +11,9 @@ var workspaceTemplateManager = Class.extend({
 	 * @returns A clone of the inner html of the template definition.
 	 */
 	getTemplate : function(templateId) {
-		if (templateId == null || typeof templateId == "undefined")
-			throw "The templateId parameter is not allowed to be null or undefined.";
+		throwNullOrUndefined(templateId, "The templateId parameter is not allowed to be null or undefined.");
 		
-		return jQuery(jQuery("#_templates #" + templateId).html());
+		return jQuery("#_templates #" + templateId).html();
 	},	
 
 	/**

@@ -34,6 +34,11 @@ var workspaceTab = Class.extend({
 	title : "",
 	
 	/**
+	 * A event which is fired when the tab's title changed.
+	 */
+	titleChanged : null,
+	
+	/**
 	 * Contains a reference to this object.
 	 */
 	_this : null,
@@ -45,6 +50,12 @@ var workspaceTab = Class.extend({
 	init: function (id) {
 		this.id = id;
 		this._this = this;
+		
+		this.titleChanged = new Event();
+	},
+	
+	setTitle : function(title) {
+		throwNullOrUndefined(title, "The title is not allowed to be null or undefined");
 	},
 	
 	/**

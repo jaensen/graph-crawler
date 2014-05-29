@@ -42,28 +42,27 @@ var workspaceTabManager = Class.extend({
 	 * Creates a new instance of the tab bar controller.
 	 */
 	init: function (workspace) {
-		if (workspace == null || typeof workspace == "undefined")
-			throw "The workpsapce parameter is null or undefined!";
+		throwNullOrUndefined(workspace, "The workpsapce parameter is null or undefined!");
 		
 		this.workspace = workspace;
+
+		throwNullOrUndefined(this.workspace.templateManager, "The workspace's templateManager is null or undefined!");
 		
-		if (this.workspace.templateManager == null || typeof this.workspace.templateManager == "undefined")
-			throw "The workspace's templateManager is null or undefined!";
-		
-		this._this = this;
+		this.templateManager = workspace.templateManager;
 	},
 	
 	/**
 	 * Opens a new tab and sets it as the active tab.
 	 */
 	newTab : function() {
-		var tabId = 0;
+		var tabId = this.workspace.getId();
 		var newTab = new workspaceTab(tabId);
 		
-		
+		var tabHtml = this.templateManager.render(this.tabTemplateId, newTab);
+		jQuery("#" + this.tabContainerId).append(tabHtml);
 		
 		this.tabs.push(newTab);
-		this.switchTab(newTab);
+		this.switchTab(newTab);		
 	},
 	
 	/**
@@ -71,9 +70,8 @@ var workspaceTabManager = Class.extend({
 	 * @param toTab The tab.
 	 */
 	switchTab : function(toTab) {
-		
-		if (typeof toTab == "undefined" || toTab == null)
-			throw "The workspaceTabBar.switchTab(toTab) method expects a valid workspaceTab-instance! Undefined or null was supplied.";
+
+		throwNullOrUndefined(toTab, "The workspaceTabBar.switchTab(toTab) method expects a valid workspaceTab-instance! Undefined or null was supplied.");
 		
 		this.activeTab = toTab;
 	},

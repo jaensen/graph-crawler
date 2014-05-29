@@ -6,7 +6,7 @@ var workspace = Class.extend({
 	/**
 	 * Contains a reference to the tab bar controller.
 	 */
-	tabBar : null,
+	tabManager : null,
 	
 	/**
 	 * Contains a reference to the content frame manager.
@@ -37,13 +37,6 @@ var workspace = Class.extend({
 		this._wire_controlBar();
 		this._wire_tabBar();
 		this._wire_contentFrameManager();
-	},
-	
-	/**
-	 * Increments the gloabl id by one and returns the value.
-	 */
-	_getId : function () {
-		return this.globalCounter++;
 	},
 	
 	/**
@@ -90,11 +83,11 @@ var workspace = Class.extend({
 	 * Wires all events concerning the tab bar.
 	 */
 	_wire_tabBar : function() {
-		this.tabBar = new workspaceTabManager(this);
+		this.tabManager = new workspaceTabManager(this);
 		var _this = this;
 		
 		jQuery("#newTab").click(function(event) {
-			_this.tabBar.newTab();
+			_this.tabManager.newTab();
 		});
 	},
 	
@@ -113,8 +106,14 @@ var workspace = Class.extend({
 	},	
 	
 	_checkEnvironment : function () {
-		if (this.tabBar.activeTab == undefined || this.tabBar.activeTab == null)
-			throw "No active tab!";
+		throwNullOrUndefined(this.tabBar.activeTab, "No active tab!");
+	},
+	
+	/**
+	 * Increments the gloabl id by one and returns the value.
+	 */
+	getId : function () {
+		return this.globalCounter++;
 	},
 
 	/**

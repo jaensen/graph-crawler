@@ -20,13 +20,12 @@ var workspaceContentFrameManager = Class.extend({
 	 * Creates a new instance of the workspaceContentFrameManager.
 	 */
 	init : function(workspace) {
-		if (workspace == null || typeof workspace == "undefined")
-			throw "The workspace parameter is not allowed to be null or undefined.";
+		
+		throwNullOrUndefined(workspace, "The workspace parameter is not allowed to be null or undefined.");
 		
 		this.workspace = workspace;
-		
-		if (this.workspace.templateManager == null || typeof this.workspace.templateManager == "undefined")
-			throw "The workspace's templateManager is null or undefined!";
+
+		throwNullOrUndefined(this.workspace.templateManager, "The workspace's templateManager is null or undefined!");
 		
 		this.templateManager = this.workspace.templateManager;
 		
