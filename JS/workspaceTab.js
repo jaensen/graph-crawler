@@ -31,7 +31,7 @@ var workspaceTab = Class.extend({
 	/**
 	 * Contains the title of the tab.
 	 */
-	title : "Test title",
+	title : "New tab",
 	
 	/**
 	 * Contains a reference to this object.

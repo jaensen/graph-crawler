@@ -51,6 +51,10 @@ var workspaceTabManager = Class.extend({
 		this.templateManager = workspace.templateManager;
 	},
 	
+	/************************************************************************************
+	 * Methods
+	 */
+	
 	/**
 	 * Opens a new tab and sets it as the active tab.
 	 */
@@ -94,6 +98,7 @@ var workspaceTabManager = Class.extend({
 			jQuery("#tab" + this.tabs[i].id).removeClass("active");
 		}
 		jQuery("#tab" + toTab.id).addClass("active");
+		this._fireOnTabSwitched();
 	},
 	
 	/**
@@ -104,5 +109,29 @@ var workspaceTabManager = Class.extend({
 		throwNullOrUndefined(tab, "The tab parameter is not allowed to be null or undefined.");
 
 		tabs.remove();
-	}
+	},
+	
+	
+	
+	
+	/************************************************************************************
+	 * Events
+	 */
+	
+	onTabSwitchedCallbacks : [],
+	/**
+	 * Registers a callback which will be called everytime the active tab changed.
+	 * @param callback The callback which should be called when the active tab changed.
+	 */
+	onTabSwitched : function (callback) {
+		throwNullOrUndefined(callback, "The callback parameter is null or undefined!");
+		
+		this.onTabSwitchedCallbacks.push(callback);
+	},
+	
+	_fireOnTabSwitched : function() {
+		for (var i = 0; i < this.onTabSwitchedCallbacks.length; i++) {
+			this.onTabSwitchedCallbacks[i]();
+		}
+	},
 });

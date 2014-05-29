@@ -79,6 +79,11 @@ var workspace = Class.extend({
 		});
 	},
 	
+
+	/************************************************************************************
+	 * "Private" methods
+	 */
+	
 	/**
 	 * Wires all events concerning the tab bar.
 	 */
@@ -89,6 +94,8 @@ var workspace = Class.extend({
 		jQuery("#newTab").click(function(event) {
 			_this.tabManager.newTab();
 		});
+		
+		this.tabManager.onTabSwitched(this._handleTabSwitched);
 	},
 	
 	/**
@@ -109,6 +116,11 @@ var workspace = Class.extend({
 		throwNullOrUndefined(this.tabManager.activeTab, "No active tab!");
 		throwNullOrUndefined(this.contentFrameManager.activeContentFrame, "No active content frame!");
 	},
+	
+
+	/************************************************************************************
+	 * "Public" methods
+	 */
 	
 	/**
 	 * Increments the gloabl id by one and returns the value.
@@ -161,4 +173,13 @@ var workspace = Class.extend({
 		
 		this.contentFrameManager.activeContentFrame.navigate();	
 	},
+	
+
+	/************************************************************************************
+	 * Event handlers
+	 */
+	
+	_handleTabSwitched : function() {
+		
+	}
 });
