@@ -118,6 +118,7 @@ body {
 .contentArea {
 	float: left;
 	width: 69%;
+	height:100%;
 	border-left:1px solid #ccc;
 }
 

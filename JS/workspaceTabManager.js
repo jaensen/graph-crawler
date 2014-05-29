@@ -98,7 +98,8 @@ var workspaceTabManager = Class.extend({
 			jQuery("#tab" + this.tabs[i].id).removeClass("active");
 		}
 		jQuery("#tab" + toTab.id).addClass("active");
-		this._fireOnTabSwitched();
+		
+		this._fireOnTabSwitched(toTab);
 	},
 	
 	/**
@@ -106,9 +107,13 @@ var workspaceTabManager = Class.extend({
 	 * @param tab The tab to close.
 	 */
 	closeTab : function(tab) {
+		
 		throwNullOrUndefined(tab, "The tab parameter is not allowed to be null or undefined.");
 
-		tabs.remove();
+		this.tabs.remove(this.tabs.indexOf(tab), 1);
+		jQuery("#tab" + tab.id).remove();
+		
+		this._fireTabClosed(tab);
 	},
 	
 	
@@ -122,6 +127,7 @@ var workspaceTabManager = Class.extend({
 	/**
 	 * Registers a callback which will be called everytime the active tab changed.
 	 * @param callback The callback which should be called when the active tab changed.
+	 * 				   Parameters: activeTab (The tab which was selected)
 	 */
 	onTabSwitched : function (callback) {
 		throwNullOrUndefined(callback, "The callback parameter is null or undefined!");
@@ -129,9 +135,29 @@ var workspaceTabManager = Class.extend({
 		this.onTabSwitchedCallbacks.push(callback);
 	},
 	
-	_fireOnTabSwitched : function() {
+	_fireOnTabSwitched : function(activeTab) {
 		for (var i = 0; i < this.onTabSwitchedCallbacks.length; i++) {
-			this.onTabSwitchedCallbacks[i]();
+			this.onTabSwitchedCallbacks[i](activeTab);
+		}
+	},	
+	
+
+	
+	onTabClosedCallbacks : [],
+	/**
+	 * Registers a callback which will be called everytime a tab was closed.
+	 * @param callback The callback which should be called when a tab was closed. 
+	 * 				   Parameters: tab (The tab which was closed)
+	 */
+	onTabClosed: function (callback) {
+		throwNullOrUndefined(callback, "The callback parameter is null or undefined!");
+		
+		this.onTabClosedCallbacks.push(callback);
+	},
+	
+	_fireTabClosed: function(tab) {
+		for (var i = 0; i < this.onTabClosedCallbacks.length; i++) {
+			this.onTabClosedCallbacks[i](tab);
 		}
 	},
 });

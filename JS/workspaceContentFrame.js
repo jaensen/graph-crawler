@@ -10,6 +10,11 @@ var workspaceContentFrame = Class.extend({
 	id : 0,
 	
 	/**
+	 * If the iframe is in edit mode.
+	 */
+	editMode : false,
+	
+	/**
 	 * Creates a new instance of the content frame class.
 	 */
 	init : function() {

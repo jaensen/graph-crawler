@@ -94,8 +94,9 @@ var workspace = Class.extend({
 		jQuery("#newTab").click(function(event) {
 			_this.tabManager.newTab();
 		});
-		
+
 		this.tabManager.onTabSwitched(this._handleTabSwitched);
+		this.tabManager.onTabClosed(this._handleTabClosed);
 	},
 	
 	/**
@@ -177,9 +178,12 @@ var workspace = Class.extend({
 
 	/************************************************************************************
 	 * Event handlers
-	 */
+	 */	
+	_handleTabSwitched : function(activeTab) {
+		//alert(activeTab.id);
+	},
 	
-	_handleTabSwitched : function() {
-		
-	}
+	_handleTabClosed : function(closedTab) {
+		//alert(closedTab.id);
+	},
 });

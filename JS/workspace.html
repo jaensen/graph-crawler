@@ -39,25 +39,6 @@
 			<span class="toolBarItem button" id="navigationNavigate">GO!</span>
 		</div>
 		<div class="toolBar" id="tabBar">
-			<!-- Static test data follows -->
-			<!-- 
-			<span class="toolBarItem tab active"> 
-				<span class="tabCaption">tab1</span> 
-				<span class="tabButton button">X</span>  
-			</span>
-			<span class="toolBarItem tab">  
-				<span class="tabCaption">tab2</span> 
-				<span class="tabButton button">X</span> 
-			</span>
-			<span class="toolBarItem tab">  
-				<span class="tabCaption">tab3</span> 
-				<span class="tabButton button">X</span> 
-			</span>
-			<span class="toolBarItem tab">  
-				<span class="tabCaption">tab4</span> 
-				<span class="tabButton button">X</span> 
-			</span>
-			 -->
 			<span class="toolBarItem tab"> 
 				<span class="tabButton button" id="newTab">+</span>
 			</span>
@@ -69,29 +50,16 @@
 					<span class="toolBarItem button right">&lt;-</span>
 				</div>
 			</div>
-			<div class="contentArea" id="tab1_Content">
-				<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
+			<div class="contentArea" id="contentArea">
+				
 			</div>
 			<!-- Static test data follows -->
 			<!-- 
+			<div class="contentArea" id="tab1_Content">
+				<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
+			</div>
 			<div class="contentArea hidden" id="tab2_Content">
 				<div class="toolBar" id="contentControlBar">
-					<span class="toolBarItem caption block">contentToolbar</span>
-					<input type="text" name="urlInput" class="kbInput" value="" />
-					<span class="toolBarItem button">Add to KB</span>
-				</div>
-				<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
-			</div>
-			<div class="contentArea hidden" id="tab3_Content">
-				<div class="toolBar" id="contentControlBar">
-					<span class="toolBarItem caption block">contentToolbar</span>
-					<input type="text" name="urlInput" class="kbInput" value="" />
-					<span class="toolBarItem button">Add to KB</span>
-				</div>
-				<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
-			</div>
-			<div class="contentArea hidden" id="tab4_Content">
-				<div class="toolBar">
 					<span class="toolBarItem caption block">contentToolbar</span>
 					<input type="text" name="urlInput" class="kbInput" value="" />
 					<span class="toolBarItem button">Add to KB</span>
@@ -122,10 +90,8 @@
 					<span class="tabButton button close">X</span> 
 				</span>
 			</div>
-			<div class="_template" id="_contentArea">
-				<div class="contentArea" id="tab{{id}}_Content">
-					<iframe class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
-				</div>
+			<div class="_template" id="_contentFrame">
+				<iframe id="tab{{id}}_Content" class="contentFrame" frameborder="no" src="file:///home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/JS/blank.html"></iframe>
 			</div>
 			<!-- END TEMPLATES -->
 		</div>

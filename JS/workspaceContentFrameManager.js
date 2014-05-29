@@ -4,11 +4,6 @@
 var workspaceContentFrameManager = Class.extend({
 	
 	/**
-	 * Contains a reference to this object.
-	 */
-	_this : null,
-	
-	/**
 	 * Contains a reference to the workspace.
 	 */
 	workspace : null,
@@ -23,9 +18,9 @@ var workspaceContentFrameManager = Class.extend({
 	 */
 	activeContentFrame : null,
 	
-	contentFrameContainerId : "",
+	contentFrameContainerId : "contentArea",
 	
-	contentFrameTemplateId : "_contentArea",
+	contentFrameTemplateId : "_contentFrame",
 	
 	/**
 	 * Creates a new instance of the workspaceContentFrameManager.
@@ -39,12 +34,33 @@ var workspaceContentFrameManager = Class.extend({
 		throwNullOrUndefined(this.workspace.templateManager, "The workspace's templateManager is null or undefined!");
 		
 		this.templateManager = this.workspace.templateManager;
-		
-		this._this = this;
 	},
 	
 	newFrame : function () {
+		var contentFrameId = this.workspace.getId();
+		var newContentFrame = new workspaceContentFrame(contentFrameId);
 		
+		var contentFrameHtml = this.templateManager.render(this.contentFrameTemplateId, newContentFrame);
+		var contentFrameElement = jQuery(contentFrameHtml);
+		
+		var _this = this;
+
+		// add the close handler to the new tab 
+		jQuery(".close", tabElement).click(function (){
+			_this.closeTab(newTab);
+		});
+		
+		// add the select handler to the new tab
+		jQuery(".tabCaption", tabElement).click(function (){
+			_this.switchTab(newTab);
+		});
+		
+		jQuery("#" + this.tabContainerId).append(tabElement);
+		
+		this.tabs.push(newTab);
+		this.switchTab(newTab);
+	
+		return newTab;
 	},
 	
 	switchFrame : function (toFrame) {
