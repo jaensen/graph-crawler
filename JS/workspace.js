@@ -181,7 +181,8 @@ var workspace = Class.extend({
 	navigationNavigate : function() {
 		this._checkEnvironment();
 		
-		this.contentFrameManager.activeContentFrame.navigate();	
+		this.contentFrameManager.navigate(
+				this.addressInput.val());	
 	},
 	
 
@@ -193,10 +194,12 @@ var workspace = Class.extend({
 	},
 	
 	_handleTabSwitched : function(activeTab) {
-		this.contentFrameManager.switchFrame(this.contentFrameManager.getFrameById(activeTab.id));
+		this.contentFrameManager.switchFrame(
+				this.contentFrameManager.getFrameById(activeTab.id));
 	},
 	
 	_handleTabClosed : function(closedTab) {
-		this.contentFrameManager.closeFrame(this.contentFrameManager.getFrameById(closedTab.id));
+		this.contentFrameManager.closeFrame(
+				this.contentFrameManager.getFrameById(closedTab.id));
 	},
 });

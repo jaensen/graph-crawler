@@ -6,10 +6,9 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{97FDB2DE-4E81-4AEA-9A32-8BDAFE9A8F92}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Liv.io.GraphCrawler.ControlService</RootNamespace>
     <AssemblyName>Liv.io.GraphCrawler.ControlService</AssemblyName>
-    <StartupObject>Liv.io.GraphCrawler.ControlService.Program</StartupObject>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -41,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="CrawlerCtrlService.cs" />
     <Compile Include="Properties\Settings.cs" />
   </ItemGroup>
@@ -67,9 +65,5 @@
   <ItemGroup>
     <None Include="Doc.txt" />
     <None Include="Properties\App.config" />
-    <None Include="test_base64.txt">
-      <DeployService-Deploy>True</DeployService-Deploy>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>

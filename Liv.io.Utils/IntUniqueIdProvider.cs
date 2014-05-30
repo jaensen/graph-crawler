@@ -21,10 +21,12 @@ namespace Liv.io.Utils
 
 		public string GetUniqueId ()
 		{
-			if (_remainingIdQueue == null || _remainingIdQueue.Count == 0)
-				_remainingIdQueue = IdBlockProvider.GetUniqueIdBlock ();
+			lock (_remainingIdQueue) {
+				if (_remainingIdQueue == null || _remainingIdQueue.Count == 0)
+					_remainingIdQueue = IdBlockProvider.GetUniqueIdBlock ();
 
-			return _remainingIdQueue.Dequeue ();
+				return _remainingIdQueue.Dequeue ();
+			}
 		}
 
 		#endregion

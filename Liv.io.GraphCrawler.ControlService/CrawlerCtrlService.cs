@@ -15,7 +15,7 @@ using System.Linq;
 
 namespace Liv.io.GraphCrawler.ControlService
 {
-	public class CrawlerCtrlService : ICrawlerCtrlService
+	public class ControlService : ICrawlerCtrlService
 	{
 		private ILogger _logger;
 		private IUniqueIdProvider _uniqueIdProvider;
@@ -23,6 +23,7 @@ namespace Liv.io.GraphCrawler.ControlService
 		private EdgeCache _edges;
 		private ResourceCache _resources;
 		private string _dataDirectory;
+
 
 		public string NodesFilename {
 			get;
@@ -49,7 +50,12 @@ namespace Liv.io.GraphCrawler.ControlService
 			set;
 		}
 
-		public CrawlerCtrlService ()
+		public ManualResetEvent QuitEvent {
+			get;
+			set;
+		}
+
+		public ControlService ()
 		{
 			_logger = new ConsoleLogger ();
 			_uniqueIdProvider = new IntUniqueIdProvider ();
@@ -155,7 +161,7 @@ namespace Liv.io.GraphCrawler.ControlService
 		{
 			Node websiteNode = AddNode (resource.Uri.ToString (), "Instance");
 			Node webpageClassNode = FindNodes ("Webpage").FirstOrDefault ();
-			Edge crawledSiteIsAWebpage = AddEdge (websiteNode.Id, webpageClassNode.Id, "is-a");
+			/*Edge crawledSiteIsAWebpage = */AddEdge (websiteNode.Id, webpageClassNode.Id, "is-a");
 		}
 
 		#region ICrawlerCtrlService implementation
@@ -382,6 +388,12 @@ namespace Liv.io.GraphCrawler.ControlService
 			}
 
 			return instanceList.ToArray ();
+		}
+
+		public void Quit ()
+		{
+			if (QuitEvent != null)
+				QuitEvent.Set ();
 		}
 
 		#endregion

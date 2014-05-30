@@ -22,7 +22,7 @@ var workspaceContentFrame = Class.extend({
 	/**
 	 * Contains the currently displayed url.
 	 */
-	activeUrl : "", 
+	activeUrl : "about:blank", 
 	
 	/**
 	 * Collects all pages which are passed when navigating backwards (acts as stack). 
@@ -34,35 +34,5 @@ var workspaceContentFrame = Class.extend({
 	 */
 	init : function(id) {
 		this.id = id;
-	},
-	
-	/**
-	 * Navigates back.
-	 */
-	back : function() {
-	},
-	
-	/**
-	 * Navigates forward.
-	 */
-	forward : function() {
-	},
-	
-	/**
-	 * Reloads the contents of the active tab.
-	 */
-	reload : function() {
-	},
-	
-	/**
-	 * Cancels the loading of the active tab.
-	 */
-	cancel : function() {
-	},
-	
-	/**
-	 * Navigates to the URI which was entered in the this.addressInput control.
-	 */
-	navigate : function() {
 	},
 });

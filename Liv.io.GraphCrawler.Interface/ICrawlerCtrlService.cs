@@ -15,6 +15,11 @@ namespace Liv.io.GraphCrawler.Interface
 		Resource Crawl (string url);
 
 
+		[OperationContract]
+		[WebGet(UriTemplate = "quit", ResponseFormat = WebMessageFormat.Json)]
+		void Quit ();
+
+
 
 		//  http://localhost:1212/ctrlService/streamResource?uri=http://en.wikipedia.org/wiki/Social_peer-to-peer_processes
 		[OperationContract]

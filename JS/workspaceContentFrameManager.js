@@ -38,6 +38,52 @@ var workspaceContentFrameManager = Class.extend({
 		this.templateManager = this.workspace.templateManager;
 	},
 	
+	
+	
+
+	
+	/**
+	 * Navigates back.
+	 */
+	back : function() {
+		alert(this.id + " back");
+	},
+	
+	/**
+	 * Navigates forward.
+	 */
+	forward : function() {
+		alert(this.id + " forward");
+	},
+	
+	/**
+	 * Reloads the contents of the active tab.
+	 */
+	reload : function() {
+		alert(this.id + " reload");
+	},
+	
+	/**
+	 * Cancels the loading of the active tab.
+	 */
+	cancel : function() {
+		alert(this.id + " cancel");
+	},
+	
+	/**
+	 * Navigates to the URI which was entered in the this.addressInput control.
+	 */
+	navigate : function(url) {
+		var _this = this;
+		jQuery.get(url
+			, function(successData) {
+				_this.getIFrame(_this.activeContentFrame).contents().find('html').html(successData);
+			});
+	},
+	
+	
+	
+	
 	newFrame : function (frameId) {
 		var contentFrameId = typeof frameId == "undefined" ? this.workspace.getId() : frameId;
 		var newContentFrame = new workspaceContentFrame(contentFrameId);
@@ -48,15 +94,7 @@ var workspaceContentFrameManager = Class.extend({
 		//var _this = this;
 
 		/*
-		// add the close handler to the new tab 
-		jQuery(".close", tabElement).click(function (){
-			_this.closeTab(newTab);
-		});
-		
-		// add the select handler to the new tab
-		jQuery(".tabCaption", tabElement).click(function (){
-			_this.switchTab(newTab);
-		});
+			Bind events....
 		*/
 		
 		jQuery("#" + this.contentFrameContainerId).append(contentFrameElement);
@@ -80,6 +118,15 @@ var workspaceContentFrameManager = Class.extend({
 		return null;
 	},
 	
+	/**
+	 * Gets the html iframe element for the given frame object.
+	 * @param forFrame The frame object
+	 * @return the iframe (as jquery object) or null
+	 */
+	getIFrame : function(forFrame) {
+		return jQuery("#tab" + forFrame.id + "_Content");
+	},
+	
 	switchFrame : function (toFrame) {
 
 		throwNullOrUndefined(toFrame, "The toFrame parameter is not allowed to be null or undefined.");
@@ -91,7 +138,8 @@ var workspaceContentFrameManager = Class.extend({
 			var contentFrameElement = jQuery("#tab" + this.frames[i].id + "_Content");
 			
 			contentFrameElement.removeClass("visible_block");
-			contentFrameElement.addClass("hidden");
+			if (this.frames[i] != toFrame)
+				contentFrameElement.addClass("hidden");
 		}
 		
 		jQuery("#tab" + toFrame.id + "_Content").addClass("visible_block");
