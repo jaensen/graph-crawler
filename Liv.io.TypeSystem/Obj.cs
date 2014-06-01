@@ -24,6 +24,23 @@ namespace Liv.io.TypeSystem
 		}
 
 		/// <summary>
+		/// Determines whether this instance is of the given type.
+		/// </summary>
+		public bool IsA (T isA)
+		{
+			if (isA.GetType () == typeof(T)) {
+
+			} else if (isA.GetType() == typeof(TComposition)){
+				TComposition compositType = isA as TComposition;
+
+			} else if (isA.GetType() == typeof(TSequence)){
+
+			}
+
+			return true;
+		}
+
+		/// <summary>
 		/// Gets a value indicating whether this instance is a literal.
 		/// </summary>
 		/// <value><c>true</c> if this instance is a literal; otherwise, <c>false</c>.</value>
@@ -59,19 +76,19 @@ namespace Liv.io.TypeSystem
 				throw new InvalidOperationException ("This object is a literal and can therefore not contain other objects or be iterated");
 		}
 
-		public int IndexOf (KeyValuePair<T, Obj> item)
+		int IList<KeyValuePair<T,Obj>>.IndexOf (KeyValuePair<T, Obj> item)
 		{
 			ThrowIsLiteralException ();
 			return _slots.IndexOf (item);
 		}
 
-		public void Insert (int index, KeyValuePair<T, Obj> item)
+		void IList<KeyValuePair<T,Obj>>.Insert (int index, KeyValuePair<T, Obj> item)
 		{
 			ThrowIsLiteralException ();
 			_slots.Insert (index, item);
 		}
 
-		public void RemoveAt (int index)
+		void IList<KeyValuePair<T,Obj>>.RemoveAt (int index)
 		{
 			ThrowIsLiteralException ();
 			_slots.RemoveAt (index);
@@ -90,37 +107,42 @@ namespace Liv.io.TypeSystem
 			}
 		}
 
-		public void Add (KeyValuePair<T, Obj> item)
+		void ICollection<KeyValuePair<T,Obj>>.Add (KeyValuePair<T, Obj> item)
 		{
 			ThrowIsLiteralException ();
 			_slots.Add (item);
 		}
 
-		public void Clear ()
+		public void Add (T type, Obj value)
+		{
+			_slots.Add (new KeyValuePair<T, Obj> (type, value));
+		}
+
+		void ICollection<KeyValuePair<T,Obj>>.Clear ()
 		{
 			ThrowIsLiteralException ();
 			_slots.Clear ();
 		}
 
-		public bool Contains (KeyValuePair<T, Obj> item)
+		bool ICollection<KeyValuePair<T,Obj>>.Contains (KeyValuePair<T, Obj> item)
 		{
 			ThrowIsLiteralException ();
 			return _slots.Contains (item);
 		}
 
-		public void CopyTo (KeyValuePair<T, Obj>[] array, int arrayIndex)
+		void ICollection<KeyValuePair<T,Obj>>.CopyTo (KeyValuePair<T, Obj>[] array, int arrayIndex)
 		{
 			ThrowIsLiteralException ();
 			_slots.CopyTo (array, arrayIndex);
 		}
 
-		public bool Remove (KeyValuePair<T, Obj> item)
+		bool ICollection<KeyValuePair<T,Obj>>.Remove (KeyValuePair<T, Obj> item)
 		{
 			ThrowIsLiteralException ();
 			return _slots.Remove (item);
 		}
 
-		public int Count {
+		int ICollection<KeyValuePair<T,Obj>>.Count {
 			get {
 				ThrowIsLiteralException ();
 
@@ -128,7 +150,7 @@ namespace Liv.io.TypeSystem
 			}
 		}
 
-		public bool IsReadOnly {
+		bool ICollection<KeyValuePair<T,Obj>>.IsReadOnly {
 			get {
 				if (IsLiteral)
 					return true;
@@ -147,6 +169,14 @@ namespace Liv.io.TypeSystem
 		{
 			ThrowIsLiteralException ();
 			return this.GetEnumerator ();
+		}
+
+		public override string ToString ()
+		{
+			if (IsLiteral)
+				return LiteralValue == null ? "Literal: <null>" : string.Format ("Literal: {0}", LiteralValue);
+			else
+				return string.Format ("{0} properties", _slots.Count);
 		}
 	}
 }

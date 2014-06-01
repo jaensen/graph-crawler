@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Liv.io.TypeSystem
 {
@@ -14,19 +15,38 @@ namespace Liv.io.TypeSystem
 			set;
 		}
 
-		internal T ()
-		{
-			Guid = Guid.NewGuid ();
+		public List<T> SameAs {
+			get;
+			private set;
 		}
 
-		internal T (string name)
-			:this()
+		public Context Context {
+			get;
+			private set;
+		}
+
+		internal T (Context context)
+		{
+			if (context == null)
+				throw new ArgumentNullException ("context");
+
+			Context = context;
+			Guid = Guid.NewGuid ();
+			SameAs = new List<T> ();
+		}
+
+		internal T (Context context, string name)
+			:this(context)
 		{
 			Name = name;
 		}
 
-		internal T (string name, Guid guid)
+		internal T (Context context, string name, Guid guid)
 		{
+			if (context == null)
+				throw new ArgumentNullException ("context");
+
+			Context = context;
 			Name = name;
 			Guid = guid;
 		}
@@ -47,6 +67,11 @@ namespace Liv.io.TypeSystem
 		public override int GetHashCode ()
 		{
 			return Guid.GetHashCode ();
+		}
+
+		public override string ToString ()
+		{
+			return string.Format ("[T: Guid={0}, Name={1}]", Guid, Name);
 		}
 	}
 }

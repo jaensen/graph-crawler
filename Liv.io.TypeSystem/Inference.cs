@@ -17,8 +17,17 @@ namespace Liv.io.TypeSystem
 			private set;
 		}
 
-		public Inference ()
+		public Context Context {
+			get;
+			private set;
+		}
+
+		internal Inference (Context context)
 		{
+			if (context == null)
+				throw new ArgumentNullException ("context");
+
+			Context = context;
 			Prototypes = new Dictionary<T, Obj> ();
 			ObjectMetadata = new Dictionary<Obj, List<T>> ();
 		}
@@ -33,46 +42,7 @@ namespace Liv.io.TypeSystem
 			Prototypes.AddOrUpdate (isA, obj);
 		}
 
-		public bool Test ()
-		{
-			
-			Obj objDuck = new Obj ();
-			objDuck.Add (new KeyValuePair<T, Obj> (new T ("Walk"), null));
-			objDuck.Add (new KeyValuePair<T, Obj> (new T ("Quack"), null));
-			
-			Obj objDog = new Obj ();
-			objDuck.Add (new KeyValuePair<T, Obj> (new T ("Walk"), null));
-			objDuck.Add (new KeyValuePair<T, Obj> (new T ("Bark"), null));
-			
-			Obj objHuman1 = new Obj ();
-			objHuman1.Add (new KeyValuePair<T, Obj> (new T ("Walk"), null));
-			objHuman1.Add (new KeyValuePair<T, Obj> (new T ("Speak"), null));
-
-			Obj objHuman2 = new Obj ();
-			objHuman2.Add (new KeyValuePair<T, Obj> (new T ("Walk"), null));
-			objHuman2.Add (new KeyValuePair<T, Obj> (new T ("Speak"), null));
-			
-			T tDuck = new T ("Duck");
-			T tDog = new T ("Dog");
-			T tHuman = new T ("Human");
-
-			Obj lifeform = new Obj ();
-			lifeform.Add (new KeyValuePair<T, Obj> (tDuck, objDog));
-			lifeform.Add (new KeyValuePair<T, Obj> (tDog, objDog));
-			lifeform.Add (new KeyValuePair<T, Obj> (tHuman, objHuman1));
-			lifeform.Add (new KeyValuePair<T, Obj> (tHuman, objHuman2));
-
-			T Tlifeform = Zip (lifeform);
-
-			return Tlifeform != null;
-		}
-
-		public bool IsA (Obj obj, T isA)
-		{
-			return false;
-		}
-
-		public T Zip (Obj obj)
+		public T CreateType (Obj obj)
 		{
 			if (obj == null)
 				throw new ArgumentNullException ("obj");
@@ -84,13 +54,18 @@ namespace Liv.io.TypeSystem
 				.GroupBy (p => p.Key.Guid)
 				.Select (g => {
 				T t = g.First ().Key;
-				return  g.Count () > 1 
-						? new TSequence (t) 
-						: t;
+				if (g.Count () > 1) {
+					TSequence sequence = new TSequence (Context);
+					foreach (var innerT in g) 
+						sequence.InnerT.Add (innerT.Key);
+					return sequence;
+				} else {
+					return t;
+				}
 			}));
 
 			foreach (var propertyType in groupedInputProperties)
-				first.Add (new KeyValuePair<T, Obj> (propertyType, null));
+				first.Add (propertyType, null);
 
 			Obj second = new Obj ();
 
@@ -102,20 +77,20 @@ namespace Liv.io.TypeSystem
 				if (g.Key) 
 					return g.First ().Key;
 				else 
-					return new TComposition () {
+					return new TComposition (Context) {
 						InnerT = new List<T>(g.Select(kvp => kvp.Key))
 					};
 			}));
 
-			TComposition zipped = new TComposition ();
+			TComposition zipped = new TComposition (Context);
 
 			foreach (var propertyType in orderedTypesAndSequences) {
-				second.Add (new KeyValuePair<T, Obj> (propertyType, null));
+				second.Add (propertyType, null);
 				zipped.InnerT.Add (propertyType);
 			}
 
 			Obj third = new Obj ();
-			third.Add (new KeyValuePair<T, Obj> (zipped, second));
+			third.Add (zipped, second);
 
 			return zipped;
 		}

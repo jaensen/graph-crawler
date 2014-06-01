@@ -12,8 +12,9 @@ namespace Liv.io.Host
 	{
 		static void Main (string[] args)
 		{
-			Inference inference = new Inference ();
-			inference.Test ();
+			Context daniel = new Context ();
+
+			Inference inference = daniel.CreateInferencer ();
 
 			ManualResetEvent quitEvent = new ManualResetEvent (false);
 

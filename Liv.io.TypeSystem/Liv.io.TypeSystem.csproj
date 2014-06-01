@@ -41,6 +41,7 @@
     <Compile Include="Obj.cs" />
     <Compile Include="BuiltInTypes.cs" />
     <Compile Include="Inference.cs" />
+    <Compile Include="Context.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
