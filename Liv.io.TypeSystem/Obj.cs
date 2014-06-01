@@ -11,33 +11,25 @@ namespace Liv.io.TypeSystem
 	{
 		List<KeyValuePair<T, Obj>> _slots;
 
+		public Context Context {
+			get;
+			set;
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Liv.io.Types.Obj"/> class.
 		/// </summary>
 		/// <param name="isLiteral">If set to <c>true</c> this object is a literal value.</param>
-		public Obj (bool isLiteral = false)
+		internal Obj (Context context, bool isLiteral = false)
 		{
+			if (context == null)
+				throw new ArgumentNullException ("context");
+
 			_isLiteral = isLiteral;
+			Context = context;
 
 			if (!_isLiteral)
 				_slots = new List<KeyValuePair<T, Obj>> ();
-		}
-
-		/// <summary>
-		/// Determines whether this instance is of the given type.
-		/// </summary>
-		public bool IsA (T isA)
-		{
-			if (isA.GetType () == typeof(T)) {
-
-			} else if (isA.GetType() == typeof(TComposition)){
-				TComposition compositType = isA as TComposition;
-
-			} else if (isA.GetType() == typeof(TSequence)){
-
-			}
-
-			return true;
 		}
 
 		/// <summary>
@@ -116,6 +108,11 @@ namespace Liv.io.TypeSystem
 		public void Add (T type, Obj value)
 		{
 			_slots.Add (new KeyValuePair<T, Obj> (type, value));
+		}
+
+		public void AddProperties (IEnumerable<T> properties)
+		{
+			_slots.AddRange (properties.Select (o => new KeyValuePair<T,Obj> (o, null)));
 		}
 
 		void ICollection<KeyValuePair<T,Obj>>.Clear ()

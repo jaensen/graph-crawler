@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Liv.io.TypeSystem
 {
@@ -21,6 +22,11 @@ namespace Liv.io.TypeSystem
 
 		private static Context _systemContext;
 
+		public Dictionary<T,Obj> Prototypes {
+			get;
+			private set;
+		}
+
 		public string Name {
 			get;
 			set;
@@ -33,6 +39,7 @@ namespace Liv.io.TypeSystem
 
 		public Context ()
 		{
+			Prototypes = new Dictionary<T, Obj> ();
 			Guid = Guid.NewGuid ();
 		}
 
@@ -44,6 +51,7 @@ namespace Liv.io.TypeSystem
 
 		public Context (string name, Guid guid)
 		{
+			Prototypes = new Dictionary<T, Obj> ();
 			Name = name;
 			Guid = guid;
 		}
@@ -66,7 +74,8 @@ namespace Liv.io.TypeSystem
 			return (TYPE)new T (this, name, guid);
 		}
 
-		public Inference CreateInferencer() {
+		public Inference CreateInferencer ()
+		{
 			return new Inference (this);
 		}
 	}
