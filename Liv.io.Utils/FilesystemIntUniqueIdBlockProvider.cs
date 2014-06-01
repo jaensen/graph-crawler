@@ -45,6 +45,7 @@ namespace Liv.io.Utils
 		public Queue<string> GetUniqueIdBlock ()
 		{
 			lock (_sync) {
+				EnsureCounterFile ();
 				string currentCounterContent = File.ReadAllText (CounterFile);
 				int currentCounterInt = 0;
 

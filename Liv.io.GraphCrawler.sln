@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liv.io.Host", "Liv.io.Host\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liv.io.AjaxProxy", "Liv.io.AjaxProxy\Liv.io.AjaxProxy.csproj", "{8BE68958-EE67-47D9-8F7A-B7BE9CD8E381}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liv.io.TypeSystem", "Liv.io.TypeSystem\Liv.io.TypeSystem.csproj", "{E3207595-C189-472F-9A7B-B2C7489E3960}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -68,6 +70,10 @@ Global
 		{97FDB2DE-4E81-4AEA-9A32-8BDAFE9A8F92}.Debug|x86.Build.0 = Debug|Any CPU
 		{97FDB2DE-4E81-4AEA-9A32-8BDAFE9A8F92}.Release|x86.ActiveCfg = Release|Any CPU
 		{97FDB2DE-4E81-4AEA-9A32-8BDAFE9A8F92}.Release|x86.Build.0 = Release|Any CPU
+		{E3207595-C189-472F-9A7B-B2C7489E3960}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E3207595-C189-472F-9A7B-B2C7489E3960}.Debug|x86.Build.0 = Debug|Any CPU
+		{E3207595-C189-472F-9A7B-B2C7489E3960}.Release|x86.ActiveCfg = Release|Any CPU
+		{E3207595-C189-472F-9A7B-B2C7489E3960}.Release|x86.Build.0 = Release|Any CPU
 		{F3C3A030-39B7-4294-8F5B-3C6C42358C8E}.Debug|x86.ActiveCfg = Debug|x86
 		{F3C3A030-39B7-4294-8F5B-3C6C42358C8E}.Debug|x86.Build.0 = Debug|x86
 		{F3C3A030-39B7-4294-8F5B-3C6C42358C8E}.Release|x86.ActiveCfg = Release|x86
@@ -77,6 +83,6 @@ Global
 		{085BE9E2-2185-4151-BC30-EE7BF5BBEF14} = {8733E406-DA7B-41FA-AA62-CAB17855EF4C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Liv.io.GraphCrawler\Liv.io.GraphCrawler.csproj
+		StartupItem = Liv.io.Host\Liv.io.Host.csproj
 	EndGlobalSection
 EndGlobal

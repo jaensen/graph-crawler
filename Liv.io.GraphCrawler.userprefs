@@ -1,20 +1,16 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Liv.io.AjaxProxy/Default.aspx">
-    <Files>
-      <File FileName="Liv.io.AjaxProxy/Default.aspx" Line="194" Column="88" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Node name="Liv.io.AjaxProxy" expanded="True" />
-          <Node name="Liv.io.GraphCrawler.ControlService" expanded="True">
-            <Node name="Properties" expanded="True" />
-          </Node>
+        <State expanded="True">
+          <Node name="Liv.io.GraphCrawler.ControlService" expanded="True" />
           <Node name="Liv.io.GraphCrawler.Interface" expanded="True" />
           <Node name="Liv.io.Host" expanded="True">
-            <Node name="Properties" expanded="True" />
+            <Node name="Program.cs" selected="True" />
           </Node>
+          <Node name="Liv.io.TypeSystem" expanded="True" />
+          <Node name="Liv.io.Utils" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
@@ -31,6 +27,7 @@
     <BreakpointStore>
       <Breakpoint file="/home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/Liv.io.Proxy/ProxyHost.cs" line="39" column="60" />
       <Breakpoint file="/home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/Liv.io.Host/Webserver.cs" line="41" column="25" />
+      <Breakpoint file="/home/daniel/Documents/Dev/Liv.io.GraphCrawler/GraphCrawler/Liv.io.TypeSystem/Inference.cs" line="56" column="31" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

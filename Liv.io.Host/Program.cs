@@ -4,6 +4,7 @@ using Liv.io.GraphCrawler.ControlService;
 using System.Threading;
 using System.IO;
 using Liv.io.Utils;
+using Liv.io.TypeSystem;
 
 namespace Liv.io.Host
 {
@@ -11,6 +12,9 @@ namespace Liv.io.Host
 	{
 		static void Main (string[] args)
 		{
+			Inference inference = new Inference ();
+			inference.Test ();
+
 			ManualResetEvent quitEvent = new ManualResetEvent (false);
 
 			StartControlService (quitEvent);
