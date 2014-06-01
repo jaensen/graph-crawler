@@ -10,7 +10,7 @@ namespace Liv.io.TypeSystem
 	/// </summary>
 	public sealed class Context
 	{
-		public static Context SystemContext {
+		internal static Context SystemContext {
 			get {
 				if (_systemContext == null) {
 					_systemContext = new Context ("System", new Guid ("ec5ca7bc-bac4-4270-b121-2dcf7f49142b"));
@@ -77,6 +77,11 @@ namespace Liv.io.TypeSystem
 		public Inference CreateInferencer ()
 		{
 			return new Inference (this);
+		}
+
+		public Obj CreateObj (bool isLiteral = false)
+		{
+			return new Obj (this, isLiteral);
 		}
 	}
 }
