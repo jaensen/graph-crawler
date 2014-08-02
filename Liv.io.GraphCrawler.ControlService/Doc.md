@@ -18,6 +18,7 @@ The web workstation can be used as a tool to discover, describe and extend the s
 When you're browsing the web using the web workstation you save the content of every site you visit with it permanently on your local computer and can edit it as if you've had created it. While you are browsing there can run custom filters that try to make sense of the information you're currently browsing. It can utilize differerent knowledge sources including a rdf knowledge base. Things that you miss in your knowledge base can be added and classified with little effort. 
 
 Filters could do for example the job of ...
+
 * ... parsing a GitHub, Twitter, LinkedIn, Facebook whatever account page
 * ... parsing stock ticker, sport results, wheather-, sensor- or currency-data
 * ... parsing microformats, hashtags etc.
@@ -67,10 +68,12 @@ Use the web workstation as PIM- and/or CRM-System and manage your personal and c
 Manage contacts, the companies they work for, their relatives, contacts and web-profiles etc..  
 
 This enables you to perform queries like:
+
 * Find all people which work in the same company and projects as contact X
 * Find all people which have been married to contact X before he/she was married to contact Y
 
 If you're a company and add the sales to your customer you could even perform queries like:
+
 * Find all customers which bought product X and know a customer which bought product Y
 * Find all customers which bought product X and mentioned it on twitter
 * Find all customers which follow a person on twitter which commented negative about a product of your company
@@ -106,6 +109,7 @@ The crawling consists out of a few different parts. Proposed built-in filters wh
 **References filter**
 
 The minimal implementation downloads the wohle document and optionally all refrenced resources. It also logs some entires about what it does into the rdf database:
+
 * The crawled resource with its uri as label and the local storage location as well as creation date, time and user as property
 * The URIs of all refrerenced resources in this document (other documents, images, audio, video etc..)
 
@@ -113,6 +117,7 @@ The minimal implementation downloads the wohle document and optionally all refre
 
 The full implementation also covers the words which are used in the page.  
 Pages are processed word by word so that the parser knows their position within the text. 
+
 1. First word:
  * Word unknown: Create new word-node and link to its origin page or page + xpath to html-element.  
  * Word known: Create a new word node and link it to the origin and the other already found mentions of that word
@@ -144,9 +149,10 @@ Access user annotations
 -----
 
 The uri schema to access a snippet which was created in the context of a crawled wikipedia page about "Markdown" could be as following:  
-**[htto://data.my-domain.org/][de.wikipedia.org/wiki/Markdown][/snippets/][640A3605-C2EB-46A7-B1DA-EEAD49A29CED.html]  **
+`[htto://data.my-domain.org/][de.wikipedia.org/wiki/Markdown][/snippets/][640A3605-C2EB-46A7-B1DA-EEAD49A29CED.html]  `
   
 where  
+
 * **http://data.my-domain.org/** is the url to a specific data endpoint  
 * **de.wikipedia.org/wiki/Markdown/** is the crawled page which was annotated by the user
 * **snippets/** is the virtual directory for all annotations on that page
@@ -155,6 +161,7 @@ where
 
 Custom filters
 -----
+
 Filters are javascript snippets which implement a specific interface. They can also be published as page by a user so that they can be shared between users.
 
 They are close to the Map/Reduce algorithm and are divided into structural and morphing filters. A structural filter provides context, while a morphing filter interprets the data in the context and changes it correspondingly.
@@ -162,6 +169,7 @@ They are close to the Map/Reduce algorithm and are divided into structural and m
 Filters should be executed in background threads using WebWorkers. Each filter result will be accessible by a unique id when it becomes available. Alternatively the *FilterPipline.create* method could include a future to the result in its return value.
 
 **Structural filters**  
+
 A structural filter tries to give a crawled page a meaning by utilizing the structure of the crawled page. They are the basic filter building blocks that supply the data to every other following filter.
 
 ? Can structural filters can also be applied to the RDF knowlege base ? -> in principal they could. and later should!
@@ -171,6 +179,7 @@ A structural filter tries to give a crawled page a meaning by utilizing the stru
 
 
 Examples:  
+
 * XPathFilter: filters elements using a XPath expression
 * RegexFilter: filters elements using a RegEx expression
 
@@ -236,6 +245,7 @@ The result objects can be saved as json serialized string and published as docum
 Note that the above example filters all return text because they use the XPath /text() function. Filters could also be used to return any kind of object like a XmlElement or custom ones defined by the used filters.
 
 *Default structural filters:*
+
 * XPathFilter (HTML filters like a, img, h1 etc...)
 * RegExFilter (-> Word filter, Numbers filter, Url filter etc...)
 
@@ -312,6 +322,7 @@ That means that a filter can access all its dependencies but nothing more.
 The GlobalFilterPipeline can access all filters because the idle event of the GlobalFilterPipeline only can be fired when all contained filters finished their execution and therefore all contained filters are dependencies.  
 
 **Possible filter editors for non-programmers**
+
  * http://code.google.com/p/blockly/
 
 Long term goals
@@ -320,7 +331,3 @@ Long term goals
 * Everything should run locally in the browser. (LevelGraph, LocalStorage?? whatever)
 * Use DHTs to find the user objects
 * Save copies of the user data on other nodes (encrypted if nessecary)
-* 
- 
-
- 
